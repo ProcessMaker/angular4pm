@@ -8,8 +8,7 @@
                 <div class="uk-width-1-2 uk-align-center" style="background:#F4F6F9;padding-left:0px;padding-right:0px;">
                     <img style="height: 150px; width: 150px;" src="assets/img/pmang_logo.png" class="uk-margin-top uk-align-center">
                     <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large">
-                        <form [formGroup]="loginForm" (submit)="login(loginForm.value)" class="uk-form-stacked">
-
+                        <form (submit)="login(loginForm.value)" class="uk-form-stacked">
                             <div class="uk-margin-top">
                                 <label class="uk-form-label" for="insturl" style="color:#B7B7B7;">Instance Name</label>
                                 <div class="uk-form-controls">
