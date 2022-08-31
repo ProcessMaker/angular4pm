@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAuth } from 'src/app/models/userAuth';
-
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -10,18 +9,17 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  loginForm: FormGroup;
-
-  constructor(public authService: AuthService, private formBuilder: FormBuilder) {
-    this.loginForm = this.formBuilder.group({
-      instance: ['demojc-se.processmaker.net', Validators.required],
-      clientId: ['11', Validators.required],
-      clientSecret: ['kERirlyY1G4tK0pzG7dtYLmqzJtGc72ARBN4joZZ', Validators.required],
-      username: ['admin', Validators.required],
-      password: ['p4ssw0rdJC!', Validators.required]
-    });
-  }
+  constructor(public authService: AuthService) {}
+  instance = 'demojc-se.processmaker.net';
+  // loginForm(userAuth: UserAuth){
+  //   return new userAuth(
+  //     'demojc-se.processmaker.net',
+  //     '11',
+  //     'kERirlyY1G4tK0pzG7dtYLmqzJtGc72ARBN4joZZ',
+  //     'admin',
+  //     'p4ssw0rdJC!'
+  //   );
+  // }
 
   ngOnInit(): void {}
 
