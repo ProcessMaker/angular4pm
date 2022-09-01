@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TasksComponent } from './components/tasks/tasks.component';
-import { NavigationComponent } from './components/_partials/navigation/navigation.component';
+import { NavigationComponent } from './components/nav/navigation.component';
 import { FormComponent } from './components/form/form.component';
 @NgModule({
   declarations: [
@@ -31,9 +31,7 @@ import { FormComponent } from './components/form/form.component';
     ReactiveFormsModule,
     CommonModule
   ],
-  providers: [
-    
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

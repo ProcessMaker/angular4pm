@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class AppComponent {
   title = 'pm4Angular';
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, commonModule: CommonModule) {
 
   }
 }
