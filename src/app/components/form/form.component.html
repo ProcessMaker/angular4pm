@@ -1,2 +1,159 @@
-<div>
-</div>
+<div id="taskModal" class="uk-modal-full" uk-modal>
+    hi
+    <div class="uk-modal-dialog uk-margin-auto-vertical uk-height-viewport">
+        <button class="uk-modal-close-full uk-close-small" type="button" uk-close></button>
+        <!-- <div *ngIf="exists == true"> -->
+            hey
+        <div>
+            heyy
+            <div class="uk-grid-collapse uk-flex-middle" uk-grid>
+              <form class="uk-form-stacked" style="width:100%;">
+                <div class="uk-width-1-1 ">
+                  <div class="uk-card uk-card-default uk-card-body">
+                    <h6 class="uk-card-title" style="background:#FFDB63;color:#FEFEFE;text-transform:uppercase;padding-left:20px;">
+                      {{ request.screen.title }}
+                    </h6>
+                    <!-- Starts creating the Form dynamically -->
+                    <div *ngFor="let data of request.screen.config[0].items; let j = index;">
+                      <div *ngSwitch="request.screen.config[0].items[j].component">
+
+                        <!-- Label or Text -->
+                        <div *ngSwitchCase="'FormHtmlViewer'">
+                          <h6 class="uk-card-subtitle" style="color:#7D5DFB;text-transform:uppercase;">
+                            {{request.screen.config[0].items[j].config.content}}
+                          </h6>
+                        </div>
+
+                        <!-- Multicolumn -->
+                        <div *ngSwitchCase="'FormMultiColumn'">
+                          <div *ngFor="let data of request.screen.config[0].items[j].items; let i = index;">
+
+                            <div *ngFor="let data of request.screen.config[0].items[j].items[i]; let k = index;">
+
+                              <div *ngSwitch="request.screen.config[0].items[j].items[i][k].component">
+
+                                <!-- Input Text -->
+                                <div *ngIf="request.data[request.screen.config[0].items[j].items[i][k].config.name] == undefined; then thenInputSectionM; else elseInputSectionM">
+                                </div>
+                                <ng-template #thenInputSectionM>
+                                  <div *ngSwitchCase="'FormInput'">
+                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].items[i][k].config.label }}</label>
+                                    <div class="uk-form-controls">
+                                      <input type="text" class="uk-input" [value]="" name="request.screen.config[0].items[j].items[i][k].config.name">
+                                    </div>
+                                  </div>
+                                </ng-template>
+                                <ng-template #elseInputSectionM>
+                                  <div *ngSwitchCase="'FormInput'">
+                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].items[i][k].config.label }}</label>
+                                    <div class="uk-form-controls">
+                                      <input type="text" class="uk-input" value="request.data[request.screen.config[0].items[j].items[i][k].config.name]" name="request.screen.config[0].items[j].items[i][k].config.name">
+                                    </div>
+                                  </div>
+                                </ng-template>
+
+                                <!-- TextArea -->
+                                <div *ngIf="request.data[request.screen.config[0].items[j].items[i][k].config.name] == undefined; then thenTextareaSectionM; else elseTextareaSectionM">
+                                </div>
+                                <ng-template #thenTextareaSectionM>
+                                  <div *ngSwitchCase="'FormTextArea'">
+                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].items[i][k].config.label }}</label>
+                                    <div class="uk-form-controls">
+                                      <textarea class="uk-textarea" name="request.screen.config[0].items[j].items[i][k].config.name"></textarea>
+                                    </div>
+                                  </div>
+                                </ng-template>
+                                <ng-template #elseTextareaSectionM>
+                                  <div *ngSwitchCase="'FormTextArea'">
+                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].items[i][k].config.label }}</label>
+                                    <div class="uk-form-controls">
+                                      <textarea class="uk-textarea" value="request.data[request.screen.config[0].items[j].items[i][k].config.name]" name="request.screen.config[0].items[j].items[i][k].config.name"></textarea>
+                                    </div>
+                                  </div>
+                                </ng-template>
+
+                                <!-- Dropdown -->
+
+                                <!-- Radio button -->
+
+                                <!-- Checkbox -->
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Input Text -->
+                        <div *ngIf="request.data[request.screen.config[0].items[j].config.name] == undefined; then thenInputSection; else elseInputSection">
+                        </div>
+                        <ng-template #thenInputSection>
+                          <div *ngSwitchCase="'FormInput'">
+                            <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].config.label }}</label>
+                            <div class="uk-form-controls">
+                              <input type="text" class="uk-input" [value]="" [name]="request.screen.config[0].items[j].config.name">
+                            </div>
+                          </div>
+                        </ng-template>
+                        <ng-template #elseInputSection>
+                          <div *ngSwitchCase="'FormInput'">
+                            <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].config.label }}</label>
+                            <div class="uk-form-controls">
+                              <input type="text" class="uk-input" value="request.data[request.screen.config[0].items[j].config.name]" name="request.screen.config[0].items[j].config.name">
+                            </div>
+                          </div>
+                        </ng-template>
+
+                        <!-- TextArea -->
+                        <div *ngIf="request.data[request.screen.config[0].items[j].config.name] == undefined; then thenTextareaSection; else elseTextareaSection">
+                        </div>
+                        <ng-template #thenTextareaSection>
+                          <div *ngSwitchCase="'FormTextArea'">
+                            <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].config.label }}</label>
+                            <div class="uk-form-controls">
+                              <textarea class="uk-textarea" value="" name="request.screen.config[0].items[j].config.name"></textarea>
+                            </div>
+                          </div>
+                        </ng-template>
+                        <ng-template #elseTextareaSection>
+                          <div *ngSwitchCase="'FormTextArea'">
+                            <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].config.label }}</label>
+                            <div class="uk-form-controls">
+                              <textarea class="uk-textarea" value="request.data[request.screen.config[0].items[j].config.name]" name="request.screen.config[0].items[j].config.name"></textarea>
+                            </div>
+                          </div>
+                        </ng-template>
+
+                        <!-- Dropdown -->
+                        <div *ngSwitchCase="'FormSelectList'">
+                          <label class="uk-form-label" style="color:#B7B7B7;">{{ request.screen.config[0].items[j].config.label }}</label>
+                          <div class="uk-form-controls">
+                            <select class="uk-select" name="request.screen.config[0].items[j].config.name">
+                              <option *ngFor="let data of request.screen.config[0].items[j].config.options.optionsList; let c = index;" [value]="request.screen.config[0].items[j].config.options.optionsList[c].value">{{request.screen.config[0].items[j].config.options.optionsList[c].content}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div *ngSwitchCase="'FormButton'">
+
+                          <div class="uk-margin-top">
+                              <input type="submit" class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" value="request.screen.config[0].items[j].config.label">
+                          </div>
+
+                          <!--<button class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" type='submit' ng-click="submitCase()">
+                            {{request.screen.config[0].items[j].config.label}}
+                          </button>-->
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div *ngIf="!request" class="uk-position-absolute uk-position-center">
+                <span uk-spinner="ratio: 4.5"></span>
+            </div>
+        </div>
+    </div>
+</div>  

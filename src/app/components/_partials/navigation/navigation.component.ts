@@ -6,11 +6,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent{
 
   constructor(public authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
 
 }

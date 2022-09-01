@@ -8,38 +8,38 @@
                 <div class="uk-width-1-2 uk-align-center" style="background:#F4F6F9;padding-left:0px;padding-right:0px;">
                     <img style="height: 150px; width: 150px;" src="assets/img/pmang_logo.png" class="uk-margin-top uk-align-center">
                     <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large">
-                        <form class="uk-form-stacked">
+                        <form class="uk-form-stacked" (submit) = "login(loginForm)">
 
                             <div class="uk-margin-top">
-                                <label class="uk-form-label" for="insturl" style="color:#B7B7B7;">Instance Name</label>
+                                <label class="uk-form-label" for="instance" style="color:#B7B7B7;">Instance Name</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="instance" type="text">
+                                    <input class="uk-input" id="instance" type="text" [(ngModel)]="loginForm.instance" name="instance">
                                 </div> 
                             </div>
                             <div class="uk-margin-top">
 
                                 <label class="uk-form-label" for="clientId" style="color:#B7B7B7;">Client ID</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="clientId" type="text">
+                                    <input class="uk-input" id="clientId" type="text" [(ngModel)]="loginForm.clientId" name="clientId">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
 
                                 <label class="uk-form-label" for="clientSecret" style="color:#B7B7B7;">Client Secret</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="clientSecret" type="password">
+                                    <input class="uk-input" id="clientSecret" type="password" [(ngModel)]="loginForm.clientSecret" name="clientSecret">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
                                 <label class="uk-form-label" for="username" style="color:#B7B7B7;">Username</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="username" type="text">
+                                    <input class="uk-input" id="username" type="text" [(ngModel)]="loginForm.username" name="username">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
                                 <label class="uk-form-label" for="password" style="color:#B7B7B7;">Password</label>
                                 <div class="uk-form-controls uk-text-right">
-                                    <input class="uk-input" id="password" type="password">
+                                    <input class="uk-input" id="password" type="password" [(ngModel)]="loginForm.password" name="password">
                                 </div>
                             </div>
                             <div class="uk-margin-top">

@@ -12,7 +12,6 @@
                     <th class="uk-width-small uk-text-center" style="color:#7D5DFB;">Status</th>
                     <th class="uk-width-small uk-text-center" style="color:#7D5DFB;">Assignee</th>
                     <th class="uk-width-small uk-text-nowrap uk-text-center" style="color:#7D5DFB;">Process</th>
-                    <!--<th class="uk-width-small uk-text-nowrap uk-text-center">Started</th>-->
                     <th class="uk-width-small uk-text-nowrap uk-text-center" style="color:#7D5DFB;">Due</th>
                 </tr>
             </thead>
@@ -26,178 +25,16 @@
                 <tr *ngFor="let task of userTasks" class="uk-table-middle">
                     <td class="uk-text-center">{{ task.id }}</td>
                     <td>{{ task.element_name }}</td>
-                    <!--<td class="uk-text-center">{{ task.status }}</td>-->
                     <td class="uk-text-center" style="text-transform:capitalize;">{{ task.advanceStatus }}</td>
                     <td class="uk-text-center">{{ task.process_request.user.firstname }} {{ task.process_request.user.lastname }}</td>
                     <td class="uk-text-center uk-text-small">{{ task.process_request.name }}</td>
-                    <!--<td class="uk-text-center uk-text-small">{{ task.initiated_at | date: 'short' }}</td>-->
-                    <td class="uk-text-center uk-text-small">{{ task.due_at | date: 'short' }}</td>
+                    <td class="uk-text-center uk-text-small">{{ task.due_at }}</td>
                     <td class="uk-text-center uk-text-small">
-
                         <!-- Start of process modal window to view rendered page-->
-
+                        <!-- <a class="button" routerLink="['/form', selectedTask]">Open</a> -->
                         <button (click)="getUserTask(task.id)" type="button" class="uk-button uk-button-primary uk-button-small" uk-toggle="target: #taskModal" style="background:#B2DA60;">Open</button>
-
-                        <div id="taskModal" class="uk-modal-full" uk-modal>
-                            <div class="uk-modal-dialog uk-margin-auto-vertical uk-height-viewport">
-                                <button class="uk-modal-close-full uk-close-small" type="button" uk-close></button>
-                                <div *ngIf="selectedTask">
-                                    <div class="uk-grid-collapse uk-flex-middle" uk-grid>
-                                      <!--<form [formGroup]="taskForm"  class="uk-form-stacked" style="width:100%;">-->
-                                      <form class="uk-form-stacked" style="width:100%;" [formGroup]="taskForm">
-                                        <!--Left Side | Screen or Form Info -->
-                                        <div class="uk-width-1-1 ">
-                                          <div class="uk-card uk-card-default uk-card-body">
-                                            <h6 class="uk-card-title" style="background:#FFDB63;color:#FEFEFE;text-transform:uppercase;padding-left:20px;">
-                                              {{ selectedTask?.screen.title }}
-                                            </h6>
-                                            <!-- Starts creating the Form dynamically -->
-                                            <div *ngFor="let data of selectedTask?.screen.config[0].items; let j = index;">
-                                              <div [ngSwitch]="selectedTask?.screen.config[0].items[j].component">
-
-                                                <!-- Label or Text -->
-                                                <div *ngSwitchCase="'FormHtmlViewer'">
-                                                  <h6 class="uk-card-subtitle" style="color:#7D5DFB;text-transform:uppercase;">
-                                                    {{selectedTask?.screen.config[0].items[j].config.content}}
-                                                  </h6>
-                                                </div>
-
-                                                <!-- Multicolumn -->
-                                                <div *ngSwitchCase="'FormMultiColumn'">
-                                                  <div *ngFor="let data of selectedTask?.screen.config[0].items[j].items; let i = index;">
-
-                                                    <div *ngFor="let data of selectedTask?.screen.config[0].items[j].items[i]; let k = index;">
-
-                                                      <div [ngSwitch]="selectedTask?.screen.config[0].items[j].items[i][k].component">
-
-                                                        <!-- Input Text -->
-                                                        <div *ngIf="selectedTask?.data[selectedTask?.screen.config[0].items[j].items[i][k].config.name] == undefined; then thenInputSectionM; else elseInputSectionM">
-                                                        </div>
-                                                        <ng-template #thenInputSectionM>
-                                                          <div *ngSwitchCase="'FormInput'">
-                                                            <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].items[i][k].config.label }}</label>
-                                                            <div class="uk-form-controls">
-                                                              <input type="text" class="uk-input" [value]="" [formControlName]="selectedTask?.screen.config[0].items[j].items[i][k].config.name">
-                                                            </div>
-                                                          </div>
-                                                        </ng-template>
-                                                        <ng-template #elseInputSectionM>
-                                                          <div *ngSwitchCase="'FormInput'">
-                                                            <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].items[i][k].config.label }}</label>
-                                                            <div class="uk-form-controls">
-                                                              <input type="text" class="uk-input" [value]="selectedTask?.data[selectedTask?.screen.config[0].items[j].items[i][k].config.name]" [formControlName]="selectedTask?.screen.config[0].items[j].items[i][k].config.name">
-                                                            </div>
-                                                          </div>
-                                                        </ng-template>
-
-                                                        <!-- TextArea -->
-                                                        <div *ngIf="selectedTask?.data[selectedTask?.screen.config[0].items[j].items[i][k].config.name] == undefined; then thenTextareaSectionM; else elseTextareaSectionM">
-                                                        </div>
-                                                        <ng-template #thenTextareaSectionM>
-                                                          <div *ngSwitchCase="'FormTextArea'">
-                                                            <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].items[i][k].config.label }}</label>
-                                                            <div class="uk-form-controls">
-                                                              <textarea class="uk-textarea" [value]="" [formControlName]="selectedTask?.screen.config[0].items[j].items[i][k].config.name"></textarea>
-                                                            </div>
-                                                          </div>
-                                                        </ng-template>
-                                                        <ng-template #elseTextareaSectionM>
-                                                          <div *ngSwitchCase="'FormTextArea'">
-                                                            <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].items[i][k].config.label }}</label>
-                                                            <div class="uk-form-controls">
-                                                              <textarea class="uk-textarea" [value]="selectedTask?.data[selectedTask?.screen.config[0].items[j].items[i][k].config.name]" [formControlName]="selectedTask?.screen.config[0].items[j].items[i][k].config.name"></textarea>
-                                                            </div>
-                                                          </div>
-                                                        </ng-template>
-
-                                                        <!-- Dropdown -->
-
-                                                        <!-- Radio button -->
-
-                                                        <!-- Checkbox -->
-
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-
-                                                <!-- Input Text -->
-                                                <div *ngIf="selectedTask?.data[selectedTask?.screen.config[0].items[j].config.name] == undefined; then thenInputSection; else elseInputSection">
-                                                </div>
-                                                <ng-template #thenInputSection>
-                                                  <div *ngSwitchCase="'FormInput'">
-                                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
-                                                    <div class="uk-form-controls">
-                                                      <input type="text" class="uk-input" [value]="" [name]="selectedTask?.screen.config[0].items[j].config.name">
-                                                    </div>
-                                                  </div>
-                                                </ng-template>
-                                                <ng-template #elseInputSection>
-                                                  <div *ngSwitchCase="'FormInput'">
-                                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
-                                                    <div class="uk-form-controls">
-                                                      <input type="text" class="uk-input" [value]="selectedTask?.data[selectedTask?.screen.config[0].items[j].config.name]" [name]="selectedTask?.screen.config[0].items[j].config.name">
-                                                    </div>
-                                                  </div>
-                                                </ng-template>
-
-                                                <!-- TextArea -->
-                                                <div *ngIf="selectedTask?.data[selectedTask?.screen.config[0].items[j].config.name] == undefined; then thenTextareaSection; else elseTextareaSection">
-                                                </div>
-                                                <ng-template #thenTextareaSection>
-                                                  <div *ngSwitchCase="'FormTextArea'">
-                                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
-                                                    <div class="uk-form-controls">
-                                                      <textarea class="uk-textarea" [value]="" [name]="selectedTask?.screen.config[0].items[j].config.name"></textarea>
-                                                    </div>
-                                                  </div>
-                                                </ng-template>
-                                                <ng-template #elseTextareaSection>
-                                                  <div *ngSwitchCase="'FormTextArea'">
-                                                    <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
-                                                    <div class="uk-form-controls">
-                                                      <textarea class="uk-textarea" [value]="selectedTask?.data[selectedTask?.screen.config[0].items[j].config.name]" [name]="selectedTask?.screen.config[0].items[j].config.name"></textarea>
-                                                    </div>
-                                                  </div>
-                                                </ng-template>
-
-                                                <!-- Dropdown -->
-                                                <div *ngSwitchCase="'FormSelectList'">
-                                                  <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
-                                                  <div class="uk-form-controls">
-                                                    <select class="uk-select" [name]="selectedTask?.screen.config[0].items[j].config.name">
-                                                      <option *ngFor="let data of selectedTask?.screen.config[0].items[j].config.options.optionsList; let c = index;" [value]="selectedTask?.screen.config[0].items[j].config.options.optionsList[c].value">{{selectedTask?.screen.config[0].items[j].config.options.optionsList[c].content}}</option>
-                                                    </select>
-                                                  </div>
-                                                </div>
-
-                                                <!-- Button -->
-                                                <div *ngSwitchCase="'FormButton'">
-
-                                                  <div class="uk-margin-top">
-                                                      <input type="submit" class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" [value]="selectedTask?.screen.config[0].items[j].config.label">
-                                                  </div>
-
-                                                  <!--<button class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" type='submit' ng-click="submitCase()">
-                                                    {{selectedTask?.screen.config[0].items[j].config.label}}
-                                                  </button>-->
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                    <div *ngIf="!selectedTask" class="uk-position-absolute uk-position-center">
-                                        <span uk-spinner="ratio: 4.5"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                      
                         <!-- End of process modal window to view rendered page-->
-
                     </td>
                 </tr>
             </tbody>
@@ -207,7 +44,7 @@
                 <a *ngIf="pagination.currentPage > 1" (click)="getUserTasks(pagination.currentPage - 1)"><span uk-pagination-previous></span></a>
             </li>
             <li *ngFor="let task of userTasks | paginate: pagination; let i = index">
-                <a (click)="getUserTasks(pagination.currentPage + i)" [ngClass]="{'uk-disabled': pagination.currentPage === pagination.currentPage + i}">
+                <a (click)="getUserTasks(pagination.currentPage + i)" ngClass="{'uk-disabled': pagination.currentPage === pagination.currentPage + i}">
                     <span>{{ pagination.currentPage + i }}</span>
                 </a>
             </li>

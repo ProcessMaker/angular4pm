@@ -7,10 +7,6 @@
 
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav d-flex align-items-center ml-auto">
-              <!--<li class="nav-item p-2">
-                <button type="button" class="uk-button uk-button-danger" style="margin-right:12px;border-radius:4px;background:#08ae9f;"><b>+</b> Request</button>
-              </li>-->
-
               <li class="nav-item p-2">
                 <a (click)="authService.logout()">
                   <button type="button" class="uk-button uk-button-danger" style="color:#7D5DFB;margin-right:12px;border-radius:4px;background:#FFDB63;">✖ Logout</button>
@@ -21,20 +17,13 @@
           </div>
         </nav>
         <nav uk-navbar>
-
-
-            <div class="uk-navbar-left" style="padding-left:20px;">
+          <div class="uk-navbar-left" style="padding-left:20px;">
 
                 <ul class="uk-navbar-nav">
-                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="/">Dashboard</a></li>
-                    <!-- <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: false}"><a [routerLink]="/tasks">Tasks</a></li>
-                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: false}"><a [routerLink]="/requests">Requests</a></li> -->
-
+                    <li routerLinkActive="uk-active"><a routerLinkActive="activebutton" routerLink="/">Dashboard</a></li>
+                    <li routerLinkActive="uk-active"><a routerLinkActive="activebutton" routerLink="/tasks">Tasks</a></li>
                 </ul>
             </div>
-
-
-
         </nav>
     </div>
 </div>

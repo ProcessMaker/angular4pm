@@ -1,15 +1,26 @@
 import { NgModule } from '@angular/core';
+import '@angular/compiler';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { NavigationComponent } from './components/_partials/navigation/navigation.component';
+import { FormComponent } from './components/form/form.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    TasksComponent,
+    NavigationComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -18,11 +29,10 @@ import { AppComponent } from './app.component';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    FormControl
+    CommonModule
   ],
   providers: [
-    FormBuilder,
-    FormsModule
+    
   ],
   bootstrap: [AppComponent]
 })

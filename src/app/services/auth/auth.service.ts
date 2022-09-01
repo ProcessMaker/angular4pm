@@ -38,7 +38,7 @@ export class AuthService {
       this.authenticatedUserToken = response.access_token;
       this.authenticatedUserRefreshToken = response.refresh_token;
       this.authenticatedUserTokenExpiry = currentDateTime + response.expires_in;
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('tasks');
     });
   }
 
