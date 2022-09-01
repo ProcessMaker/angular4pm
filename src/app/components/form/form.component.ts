@@ -19,13 +19,8 @@ exists;
     public userServce: UserService
   ) { 
     this.request = JSON.parse(this.route.snapshot.paramMap.get('data'));
-    
-    console.log(this.request);
-    if(typeof(this.request) == 'undefined'){
-      this.exists = false;
-    }else{
-      this.exists = true;
-    }
-    console.log(this.exists);
+  }
+  submitForm(data){
+    console.log(data);
   }
 }

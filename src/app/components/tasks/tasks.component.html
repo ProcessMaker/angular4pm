@@ -30,11 +30,7 @@
                     <td class="uk-text-center uk-text-small">{{ task.process_request.name }}</td>
                     <td class="uk-text-center uk-text-small">{{ task.due_at }}</td>
                     <td class="uk-text-center uk-text-small">
-                        <!-- Start of process modal window to view rendered page-->
-                        <!-- <a class="button" routerLink="['/form', selectedTask]">Open</a> -->
                         <button (click)="getUserTask(task.id)" type="button" class="uk-button uk-button-primary uk-button-small" uk-toggle="target: #taskModal" style="background:#B2DA60;">Open</button>
-                      
-                        <!-- End of process modal window to view rendered page-->
                     </td>
                 </tr>
             </tbody>

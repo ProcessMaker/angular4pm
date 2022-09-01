@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-//import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-//import { UserAuth } from 'src/app/models/userAuth';
 import { CommonModule } from '@angular/common';
 import { Request } from 'src/app/models/request';
 import { Task } from 'src/app/models/task';
