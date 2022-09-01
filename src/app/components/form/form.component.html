@@ -1,11 +1,6 @@
-<div id="taskModal" class="uk-modal-full" uk-modal>
-    {{exists}}
-    <div class="uk-modal-dialog uk-margin-auto-vertical uk-height-viewport">
-        <button class="uk-modal-close-full uk-close-small" type="button" uk-close></button>
-        <div *ngIf="exists == true">
-            hey
-        <div>
-            heyy
+<div id="taskModal">
+    <div class="uk-margin-auto-vertical uk-height-viewport">
+        <div *ngIf="request">
             <div class="uk-grid-collapse uk-flex-middle" uk-grid>
               <form class="uk-form-stacked" style="width:100%;">
                 <div class="uk-width-1-1 ">
@@ -15,8 +10,7 @@
                     </h6>
                     <!-- Starts creating the Form dynamically -->
                     <div *ngFor="let data of request.screen.config[0].items; let j = index;">
-                      <div *ngSwitch="request.screen.config[0].items[j].component">
-
+                      <div [ngSwitch]="request.screen.config[0].items[j].component">
                         <!-- Label or Text -->
                         <div *ngSwitchCase="'FormHtmlViewer'">
                           <h6 class="uk-card-subtitle" style="color:#7D5DFB;text-transform:uppercase;">
@@ -138,6 +132,10 @@
 
                           <div class="uk-margin-top">
                               <input type="submit" class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" value="request.screen.config[0].items[j].config.label">
+                          </div>
+
+                          <div *ngSwitchDefault>
+                            default
                           </div>
 
                           <!--<button class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" type='submit' ng-click="submitCase()">
