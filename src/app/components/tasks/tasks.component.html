@@ -23,14 +23,14 @@
                     </td>
                 </tr>
                 <tr *ngFor="let task of userTasks" class="uk-table-middle">
-                    <td class="uk-text-center">{{ task.id }}</td>
+                    <td class="uk-text-center">{{ task.process_request_id }}</td>
                     <td>{{ task.element_name }}</td>
                     <td class="uk-text-center" style="text-transform:capitalize;">{{ task.advanceStatus }}</td>
-                    <td class="uk-text-center">{{ task.process_request.user.firstname }} {{ task.process_request.user.lastname }}</td>
+                    <td class="uk-text-center">{{ task.user.firstname }} {{ task.user.lastname }}</td>
                     <td class="uk-text-center uk-text-small">{{ task.process_request.name }}</td>
                     <td class="uk-text-center uk-text-small">{{ task.due_at }}</td>
                     <td class="uk-text-center uk-text-small">
-                        <button (click)="getUserTask(task.id)" type="button" class="uk-button uk-button-primary uk-button-small" uk-toggle="target: #taskModal" style="background:#B2DA60;">Open</button>
+                        <button (click)="openForm(task.process_request_id, task.id)" type="button" class="uk-button uk-button-primary uk-button-small" uk-toggle="target: #taskModal" style="background:#B2DA60;">Open</button>
                     </td>
                 </tr>
             </tbody>

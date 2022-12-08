@@ -1,29 +1,31 @@
-<div class="uk-section uk-padding-remove uk-section-default">
+<div *ngIf="authService.authenticated" class="uk-section uk-padding-remove uk-section-default">
+  <!-- <div class="uk-section uk-padding-remove uk-section-default"> -->
     <div class="uk-container uk-padding-remove">
         <nav uk-navbar>
           <div class="uk-navbar-left" style="padding-left:15px;padding-top:7px;">
               <a [routerLink]="['/']" class="uk-logo"><img src="https://processmaker-ang.s3.us-west-2.amazonaws.com/ProcessMakerLogo.png"></a>
           </div>
-
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav d-flex align-items-center ml-auto">
               <li class="nav-item p-2">
                 <a (click)="authService.logout()">
+                  <!-- <a> -->
                   <button type="button" class="uk-button uk-button-danger" style="color:#7D5DFB;margin-right:12px;border-radius:4px;background:#FFDB63;">✖ Logout</button>
                 </a>
               </li>
-
             </ul>
           </div>
         </nav>
-        <nav uk-navbar>
-          <div class="uk-navbar-left" style="padding-left:20px;">
-
-                <ul class="uk-navbar-nav">
-                    <li routerLinkActive="uk-active"><a routerLinkActive="activebutton" routerLink="dashboard">Dashboard</a></li>
-                    <li routerLinkActive="uk-active"><a routerLinkActive="activebutton" routerLink="tasks">Tasks</a></li>
-                </ul>
-            </div>
-        </nav>
+        <!-- <nav uk-navbar>
+          <div class="uk-navbar-left uk-background-muted" style="background-color:#7D5DFB;margin-top:25px;height:50px;padding-left:20px;width:100%;">
+            <ul class="uk-navbar-nav">
+              <li class="nav-item p-2">
+                <a routerLinkActive="activebutton" routerLink="tasks" style="margin-top:-15px;color:#fff;">
+                  My Tasks
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav> -->
     </div>
 </div>

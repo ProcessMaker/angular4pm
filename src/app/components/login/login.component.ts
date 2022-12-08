@@ -1,26 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserAuth } from 'src/app/models/userAuth';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
-export class LoginComponent {
-loginForm;
-  constructor(private router: Router, public authService: AuthService) {
-    this.loginForm = {
-    instance: 'demojc-se.processmaker.net',
-    clientId: '11',
-    clientSecret: 'kERirlyY1G4tK0pzG7dtYLmqzJtGc72ARBN4joZZ',
-    username: 'admin',
-    password: 'p4ssw0rdJC!'
+export class LoginComponent implements OnInit{
+accessToken: any;
+  constructor(public authService: AuthService, private activatedRoute: ActivatedRoute) {}
 
-    }
+ngOnInit() {
+  this.activatedRoute.queryParams.subscribe(params => {
+      if (params['code']) {
+        this.authService.getAccessToken(params['code']);
+      }
+  });
 }
-
-  login(formData: UserAuth): void {
-    this.authService.login(formData);
+  login(){
+    this.authService.login();
+  }
+  logout(){
+    this.authService.logout();
   }
 }

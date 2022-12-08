@@ -19,8 +19,11 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@mdi/font": "^6.5.95",
+    "angular-oauth2-oidc": "^14.0.1",
+    "angular-oauth2-oidc-jwks": "^14.0.1",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~7.5.0",
+    "swagger-ui": "^4.14.3",
     "tslib": "^2.3.0",
     "uikit": "^3.11.1",
     "zone.js": "~0.11.4"

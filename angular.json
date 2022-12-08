@@ -77,12 +77,10 @@
           "configurations": {
             "production": {
               "browserTarget": "ProcessmakerNG:build:production",
-              "proxyConfig": "src/proxy.conf.json",
               "port": 4200
             },
             "development": {
               "browserTarget": "ProcessmakerNG:build:development",
-              "proxyConfig": "src/proxy.conf.json",
               "port": 4200
             }
           },
@@ -104,9 +102,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
             ],
             "scripts": []
           }

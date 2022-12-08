@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Request } from 'src/app/models/request';
-import { Task } from 'src/app/models/task';
-import { UserService } from 'src/app/services/user/user.service';
+import { Component, OnInit } from '@angular/core';
+import { Form } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ApiModule, UsersService, TasksService, ProcessRequestsService } from 'api';
+import { DbService } from 'src/app/services/db.service';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  templateUrl: './tasks.component.html'
 })
 
-export class TasksComponent {
+export class TasksComponent implements OnInit {
   pagination = {
     currentPage: 1,
     itemsPerPage: 10,
@@ -24,33 +22,26 @@ export class TasksComponent {
   selectedTask: Task;
   userTasks = [];
   color="green";
-
-  constructor(public userService: UserService, private route: ActivatedRoute, private router: Router) {
-    this.getUserTasks()
-  }; 
+  form;
 
 
-  async getUserTask(taskId: number): Promise<void> {
-    this.selectedTask = null;
-    this.userService.getUserTask(taskId).subscribe((response: Task) => {
-      this.selectedTask = response;
-      this.router.navigate(['form', {'data': JSON.stringify(this.selectedTask)}]);
+  constructor(private api: ApiModule, private requestApi: ProcessRequestsService, private usersApi: UsersService, private tasksApi: TasksService, private route: ActivatedRoute, private router: Router, private db: DbService) {
+    
+    }
+  ngOnInit() {
+    this.tasksApi.configuration.credentials['pm_api_bearer'] = this.db.load('access_token');
+    this.tasksApi.getTasks(null,'ACTIVE')
+    .subscribe((response) => {
+      this.userTasks = response.data;
+      this.form = new FormComponent(this.route,this.router,this.requestApi,this.tasksApi,this.db);
     },
     (error) => {
       console.log(error);
     });
   }
-
-  getUserTasks(page?: number, filter?: string, sortBy?: string, sortOrder?: string): void {
-    this.userTasks = [];
-     this.userService.getUserTasks(page, filter, sortBy, sortOrder).subscribe((response) => {
-     this.userTasks = response['data'];
-     this.pagination.currentPage = response['meta']['current_page'];
-     this.pagination.lastPage = response['meta']['last_page'];
-     this.pagination.totalItems = response['meta']['total'];
-     },
-     (error) => {
-       console.error(error);
-     })
+  openForm(processRequestId, taskId){
+    this.router.navigate(['form', {'processRequestId': processRequestId, 'taskId': taskId}]);
   }
+  getUserTask(id){}
+  getUserTasks(id){}
 }

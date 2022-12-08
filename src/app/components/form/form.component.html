@@ -18,21 +18,27 @@
                             {{data.config.content}}
                           </h4>
                         </div>
-                        <div *ngSwitchCase="'FormMultiColumn'">
+                        <div *ngSwitchCase="'FormMultiColumn'" uk-grid class="uk-child-width-expand">
                           <div *ngFor="let items of data.items">
-                            <div class="uk-grid uk-child-width-expand">
+                            <div>
                             <div *ngFor="let item of items">
                               <div [ngSwitch]="item.component">
                                 <div *ngSwitchCase="'FormInput'">
                                   <div class="uk-form-controls">
                                     <label class="uk-form-label" [for]="item.config.name" style="color:#B7B7B7;">{{ item.config.label }}</label>
-                                    <input type="text" class="uk-input" [readonly]="item.config.readonly" [name]="item.config.name" [(ngModel)] = "request.request_data[item.config.name]"/>
+                                    <input type="text" class="uk-input" [readonly]="item.config.readonly" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]"/>
+                                  </div>
+                                </div>
+                                <div *ngSwitchCase="'FormCheckbox'">
+                                  <div class="uk-form-controls">
+                                    <label class="uk-form-label" [for]="item.config.name" style="color:#B7B7B7;">{{ item.config.label }}</label>
+                                    <input type="checkbox" class="uk-checkbox" [checked]="request.data[item.config.name]" [name]="item.config.name"/>
                                   </div>
                                 </div>
                                 <div *ngSwitchCase="'FormTextArea'">
                                   <div class="uk-form-controls">
                                     <label class="uk-form-label" [for]="item.config.name" style="color:#B7B7B7;">{{ item.config.label }}</label>
-                                    <textarea class="uk-textarea" [name]="item.config.name" [readonly]="item.config.readonly" [(ngModel)] = "request.request_data[item.config.name]"></textarea>
+                                    <textarea class="uk-textarea" [name]="item.config.name" [readonly]="item.config.readonly" [(ngModel)] = "request.data[item.config.name]"></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -44,7 +50,7 @@
                         <div *ngSwitchCase="'FormSelectList'">
                           <label class="uk-form-label" style="color:#B7B7B7;">{{ data.config.label }}</label>
                           <div class="uk-form-controls">
-                            <select class="uk-select" [name]="data.config.name" [(ngModel)] = "request.request_data[data.config.name]">
+                            <select class="uk-select" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]">
                               <option *ngFor="let option of data.config.options.optionsList" [ngValue]="option.value">{{option.content}}</option>
                             </select>
                           </div>
@@ -52,13 +58,13 @@
                         <div *ngSwitchCase="'FormTextArea'">
                           <label class="uk-form-label" style="color:#B7B7B7;">{{ data.config.label }}</label>
                           <div class="uk-form-controls">
-                            <textarea class="uk-textarea" [name]="data.config.name" [readonly]="data.config.readonly" [(ngModel)] = "request.request_data[data.config.name]"></textarea>
+                            <textarea class="uk-textarea" [name]="data.config.name" [readonly]="data.config.readonly" [(ngModel)] = "request.data[data.config.name]"></textarea>
                           </div>
                         </div>
                         <!-- Button -->
                         <div *ngSwitchCase="'FormButton'">
                           <div class="uk-margin-top">
-                              <input type="submit" class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" [(ngModel)] = "data.config.label" [name] = "data.config.label">
+                              <input type="submit" class="uk-button uk-button-primary uk-width-1-1" [(ngModel)] = "data.config.label" [name] = "data.config.label">
                           </div>
                           <div *ngSwitchDefault>
                             default
