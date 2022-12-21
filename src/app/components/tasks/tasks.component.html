@@ -1,4 +1,4 @@
-<div class="uk-section uk-section-default">
+<!-- <div class="uk-section uk-section-default">
     <div class="uk-container">
         <h6 class="uk-card-title" style="background:#7D5DFB;color:#dedede;text-transform:uppercase;padding-left:10px;border-bottom: 5px solid #FFDB63;">
           Tasks
@@ -49,4 +49,56 @@
             </li>
         </ul>
     </div>
-</div>
+</div> -->
+    
+        <div class="main-sub row align-items-center pt-5">
+          <div class="table-container mt-5">
+            <div class="mb-2">
+              <h2>Your form tasks</h2>
+              <small class="text-secondary">View all form tasks assigned to your group.</small>
+            </div>
+            <table id="mytable" class="table align-middle mb-0 bg-white">
+              <thead class="bg-light">
+                <tr class="header-row">
+                  <th>ID #</th>
+                  <th>Task Name</th>
+                  <th>Status</th>
+                  <th>Assignee</th>
+                  <th>Process</th>
+                  <th>Due</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="!userTasks.length">
+                  <td colspan="6" >
+                      <p>Loading...</p>
+                  </td>
+              </tr>
+              <tr *ngFor="let task of userTasks">
+                <td><div class="d-flex align-items-center"><div><p class="fw-bold mb-1">{{ task.process_request_id }}</p></div></div></td>
+                <td><p class="fw-bold fw-normal mb-1">{{ task.element_name }}</p></td>
+                <td style="text-transform:capitalize;"><span class="badge badge-success rounded-pill d-inline">{{ task.advanceStatus }}</span></td>
+                <td>{{ task.user.firstname }} {{ task.user.lastname }}</td>
+                <td>{{ task.process_request.name }}</td>
+                <td><div><span>{{ task.due_at }}</span></div></td>
+                <td>
+                  <button (click)="openForm(task.process_request_id, task.id)" type="button" class="btn btn-link btn-sm btn-rounded text-primary">
+                      <i class="me-1 bi-window-sidebar text-primary"></i>
+                      View Task
+                    </button>
+                </td>
+              </tr>
+            <nav class="mt-4">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>

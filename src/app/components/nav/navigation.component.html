@@ -1,6 +1,5 @@
-<div *ngIf="authService.authenticated" class="uk-section uk-padding-remove uk-section-default">
-  <!-- <div class="uk-section uk-padding-remove uk-section-default"> -->
-    <div class="uk-container uk-padding-remove">
+<!-- <div *ngIf="authService.authenticated" class="uk-section uk-padding-remove uk-section-default"> -->
+    <!-- <div class="uk-container uk-padding-remove">
         <nav uk-navbar>
           <div class="uk-navbar-left" style="padding-left:15px;padding-top:7px;">
               <a [routerLink]="['/']" class="uk-logo"><img src="https://processmaker-ang.s3.us-west-2.amazonaws.com/ProcessMakerLogo.png"></a>
@@ -9,13 +8,12 @@
             <ul class="uk-navbar-nav d-flex align-items-center ml-auto">
               <li class="nav-item p-2">
                 <a (click)="authService.logout()">
-                  <!-- <a> -->
                   <button type="button" class="uk-button uk-button-danger" style="color:#7D5DFB;margin-right:12px;border-radius:4px;background:#FFDB63;">✖ Logout</button>
                 </a>
               </li>
             </ul>
           </div>
-        </nav>
+        </nav> -->
         <!-- <nav uk-navbar>
           <div class="uk-navbar-left uk-background-muted" style="background-color:#7D5DFB;margin-top:25px;height:50px;padding-left:20px;width:100%;">
             <ul class="uk-navbar-nav">
@@ -27,5 +25,17 @@
             </ul>
           </div>
         </nav> -->
-    </div>
+    <!-- </div>
+</div> -->
+<div *ngIf="authService.authenticated" class="header-container d-flex justify-content-between">
+  <div class="header-text-container d-flex flex-row align-items-end">
+    <img src="/assets/img/PMLOGO.png" alt="" style="height: 87px" />
+    <h1 class="display-4">ProcessMaker</h1>
+  </div>
+  <div class="header-text-container mt-3 d-flex align-items-end">
+    <a class="logout-btn text-primary" href="#"
+      ><i class="me-1 text-primary bi bi-arrow-left-right"></i> Log
+      Out</a
+    >
+  </div>
 </div>

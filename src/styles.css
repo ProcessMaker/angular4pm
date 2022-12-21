@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+*{
+    /* color:var(--text-color); */
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+hr{
+margin: unset !important;
+}
+
+h2{
+    font-weight: 400;
+    margin-bottom: unset;   
+}
+
+h5{
+font-weight: 400 !important;
+}
+
+img{
+/* width: 150px; */
+height: 120px;
+}
+
+th{
+    padding:1rem .5rem !important;   
+   font-size: .875rem;
+    margin-bottom: 1rem !important;
+    background-color: white !important;
+    color:var(--text-color) !important;
+    font-weight: 600 !important;
+}
+
+th:last-child  {
+   border-top-right-radius: 12px;
+}
+
+ th:first-child  {
+   border-top-left-radius: 12px;
+}
+
+/* //Removes border from last table row */
+
+ tr td:last-child{
+    text-align: right;
+ }
+
+.left-main, .right-main{
+height: 100vh;
+}
+
+.rightside{
+background-color: #929FAC;
+/* background-color: #E8EBEE; */
+}
+
+.leftside{
+background-color: rgb(250, 250, 250);
+}
+
+
+.right-main, .left-main{
+display: grid;
+grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+grid-template-rows: [row1-start] 25% [row1-end] 200px [third-line] auto [last-line];
+}
+.left-main{
+display: grid;
+grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+grid-template-rows: [row1-start] 25% [row1-end] 200px [third-line] 100px [last-line];
+}
+
+.square {
+width: 100%;
+height: auto;
+/* background-color: #1E2328; */
+box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%), 0px 5px 5px -3px rgb(0 0 0 / 20%);
+grid-column: 3 / span 3;
+grid-row: third-line / 3;
+border-top-left-radius: 15px;
+background-image: url(/assets/img/screen.jpg);
+background-size: 1000px;
+}
+
+.text-block, .logo-container{
+grid-column: line3 / span 3;
+grid-row: row1-end / 3;
+}
+
+.header-container{
+grid-column: line3 / span 3;
+grid-row: third-line / 3;
+}
+
+.text-block{
+color: rgb(250, 250, 250);
+/* color: #212529; */
+font-family: SF Pro Display;
+
+}
+
+.btn-login{
+width: 70%;
+padding:.6rem;
+color:#1572C2 !important;
+border-color: #1572C2 !important;
+}
+
+.btn-login:hover{
+color: rgb(250, 250, 250) !important;
+background-color: #1572C2 !important;
+border-color: #1572C2 !important;
+}
+
+.title{
+font-family: "SF Pro Display";
+letter-spacing: -0.144px ;
+}
+
+.sub{
+font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+.sub-title{
+display: inline-block;
+
+}
+
+.link{
+text-decoration: none;
+color:#1572C2 !important;
+}
+
+:root{
+    --text-color:rgba(34,42,66,.7);
+    --success-text:#0d6832;
+    --primary-text:#273e63;
+    --warning-text:#73510d;
+    --danger-text: #A61001;
+    --success-bg:#d6f0e0;
+    --primary-bg:#dfe7f6;
+    --warning-bg:#fbf0da;
+    --danger-bg: #FFEBE9;
+    --primary-btn-text:#3b71ca;
+}
+
+.main{
+    background-color: #f5f6f8bb !important;
+    height: 100vh;
+    
+}
+
+.text-primary{
+    color:var(--primary-btn-text) !important;
+}
+
+.fw-bold{
+    font-weight: 500 !important;
+}
+
+/* //Badge color overwirte */
+
+.badge-success{
+    color:var(--success-text);
+    background-color:var(--success-bg);
+}
+
+.badge-primary{
+    color:var(--primary-text);
+    background-color:var(--primary-bg);
+}
+
+.badge-warning{
+    color:var(--warning-text);
+    background-color:var(--warning-bg);
+}
+
+.badge-danger{
+    color:var(--danger-text);
+    background-color: var(--danger-bg);
+}
+
+
+
+/* //Badge color overwirte end */
+
+
+/* table styling */
+
+/* primary table container  */
+.table-container{
+    box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 25%), 0px 2px 6px 2px rgb(60 64 67 / 10%);
+    padding:1rem;
+    border-radius: 12px;
+    background-color: white;
+}
+/* Changing TH bottom border color*/
+.table>:not(:last-child)>:last-child>* {
+     border-bottom-color: rgba(128, 128, 128, 0.277) !important;
+    
+}
+
+/* table styling end*/
+
+/*  button styling */
+.btn-link{
+    font-weight: 500;
+    color:var(--primary-text);
+    text-decoration: none;
+    /* border:1px solid #2c58a094 !important; */
+    border-radius: 8px;
+}
+
+.logout-btn{
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.page-link{
+    border: unset !important;
+    color:var(--primary-btn-text)
+}

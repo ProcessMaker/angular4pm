@@ -25,7 +25,6 @@
     "rxjs": "~7.5.0",
     "swagger-ui": "^4.14.3",
     "tslib": "^2.3.0",
-    "uikit": "^3.11.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

@@ -30,14 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/@mdi/font/css/materialdesignicons.min.css",
-              "node_modules/uikit/dist/css/uikit.min.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/uikit/dist/js/uikit.min.js",
-              "node_modules/uikit/dist/js/uikit-icons.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
