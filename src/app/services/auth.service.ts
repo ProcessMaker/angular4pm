@@ -18,11 +18,11 @@ export class AuthService {
   login(){
     const params = [
       'response_type=code',
-      'client_id=9',
+      'client_id=12',
       'scope=*',
       encodeURIComponent('redirect_uri=http://localhost:4200/#/oauth/callback'),
     ];
-    window.location.href = 'http://4.2.36.pm.local/oauth/authorize?' + params.join('&');
+    window.location.href = 'https://demojc-se.processmaker.net/oauth/authorize?' + params.join('&');
   }
 
   logout(){
@@ -36,9 +36,9 @@ export class AuthService {
     const payload = new HttpParams()
         .append('grant_type', 'authorization_code')
         .append('code', code)
-        .append('client_secret', 'xSe2fvNHv3SlZLUcQkHkkEUQfJMaYTX0Cb0sz5Sj')
-        .append('client_id', '9');
-      this.http.post('http://4.2.36.pm.local/oauth/token', payload, {
+        .append('client_secret', 'uvUAU0S1ZxasipjmMG6aNHzQChOJmQUuez0jKHaZ')
+        .append('client_id', '12');
+      this.http.post('https://demojc-se.processmaker.net/oauth/token', payload, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }

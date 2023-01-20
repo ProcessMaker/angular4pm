@@ -1,70 +1,87 @@
 <div id="taskModal">
-    <div class="uk-margin-auto-vertical uk-height-viewport">
+    <div class="container">
         <div *ngIf="request">
-            <div class="uk-grid-collapse uk-flex-middle" uk-grid>
-              <form class="uk-form-stacked" style="width:100%;" #pmForm = "ngForm" (ngSubmit)="submitForm(pmForm.value)">
-                <div class="uk-width-1-1 ">
-                  <div class="uk-card uk-card-default uk-card-body">
-                    <h1 class="uk-card-title" style="background:#FFDB63;color:#FEFEFE;text-transform:uppercase;padding-left:20px;">
+            <div class="container-fluid">
+              <form #pmForm = "ngForm" (ngSubmit)="submitForm(pmForm.value)">
+                <div>
+                  <div>
+                    <h4 class="card-title">
                       {{ request.screen.title }}
-                    </h1>
+                    </h4>
                     <!-- Starts creating the Form dynamically -->
                     <div *ngFor="let data of request.screen.config[0].items">
                       
                       <div [ngSwitch]="data.component">
                         <!-- Label or Text -->
                         <div *ngSwitchCase="'FormHtmlViewer'">
-                          <h4 class="uk-card-subtitle" style="color:#7D5DFB;text-transform:uppercase;">
+                          <h6 class="card-subtitle mb-2 text-muted" >
                             {{data.config.content}}
-                          </h4>
+                          </h6>
                         </div>
-                        <div *ngSwitchCase="'FormMultiColumn'" uk-grid class="uk-child-width-expand">
-                          <div *ngFor="let items of data.items">
-                            <div>
-                            <div *ngFor="let item of items">
-                              <div [ngSwitch]="item.component">
-                                <div *ngSwitchCase="'FormInput'">
-                                  <div class="uk-form-controls">
-                                    <label class="uk-form-label" [for]="item.config.name" style="color:#B7B7B7;">{{ item.config.label }}</label>
-                                    <input type="text" class="uk-input" [readonly]="item.config.readonly" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]"/>
-                                  </div>
+
+                        <div *ngSwitchCase="'FormInput'">
+                          <div class="form-group">
+                            <label>{{ data.config.label }}</label>
+                            <input type="text" class="form-control" [readonly]="data.config.readonly" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]"/>
+                          </div>  
+                        </div>
+                        <!-- Multi Column -->
+                        <div *ngSwitchCase="'FormMultiColumn'">
+                          <div *ngFor="let items of data.items" class="form-row">
+                            
+                            <div *ngFor="let item of items" class="form-group col-md-6">
+                              <div [ngSwitch]="item.component" >
+                                <div *ngSwitchCase="'FormInput'" >
+                                    <label [for]="item.config.name">{{ item.config.label }}</label>
+                                    <input type="text" class="form-control" [readonly]="item.config.readonly" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]"/>
                                 </div>
-                                <div *ngSwitchCase="'FormCheckbox'">
-                                  <div class="uk-form-controls">
-                                    <label class="uk-form-label" [for]="item.config.name" style="color:#B7B7B7;">{{ item.config.label }}</label>
-                                    <input type="checkbox" class="uk-checkbox" [checked]="request.data[item.config.name]" [name]="item.config.name"/>
-                                  </div>
+                                <div *ngSwitchCase="'FormCheckbox'" >
+                                    <input type="checkbox" class="form-check-input" [checked]="request.data[item.config.initiallyChecked]" [disabled]="item.config.disabled" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]"/>
+                                    <label class="form-check-label" [for]="item.config.name">{{ item.config.label }}</label>
                                 </div>
-                                <div *ngSwitchCase="'FormTextArea'">
-                                  <div class="uk-form-controls">
-                                    <label class="uk-form-label" [for]="item.config.name" style="color:#B7B7B7;">{{ item.config.label }}</label>
-                                    <textarea class="uk-textarea" [name]="item.config.name" [readonly]="item.config.readonly" [(ngModel)] = "request.data[item.config.name]"></textarea>
-                                  </div>
+                                <div *ngSwitchCase="'FormTextArea'" >
+                                    <label [for]="item.config.name">{{ item.config.label }}</label>
+                                    <textarea class="form-control" [name]="item.config.name" [readonly]="item.config.readonly" [(ngModel)] = "request.data[item.config.name]"></textarea>
+                                </div>
+                                <div *ngSwitchCase="'FormSelectList'" >
+                                  <label>{{ item.config.label }}</label>
+                                  <select class="form-control" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]" [disabled]="item.config.readonly">
+                                    <option *ngFor="let option of item.config.options.optionsList" [ngValue]="option.value">{{option.content}}</option>
+                                  </select>
                                 </div>
                               </div>
-                            </div>
                             </div>
                           </div>
                         </div>
                         <!-- Dropdown -->
                         <div *ngSwitchCase="'FormSelectList'">
-                          <label class="uk-form-label" style="color:#B7B7B7;">{{ data.config.label }}</label>
-                          <div class="uk-form-controls">
-                            <select class="uk-select" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]">
+                          <div class="form-group">
+                            <label>{{ data.config.label }}</label>
+                            <select class="form-control" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]" [disabled]="data.config.readonly">
                               <option *ngFor="let option of data.config.options.optionsList" [ngValue]="option.value">{{option.content}}</option>
                             </select>
                           </div>
                         </div>
+                        <!-- Textarea -->
                         <div *ngSwitchCase="'FormTextArea'">
-                          <label class="uk-form-label" style="color:#B7B7B7;">{{ data.config.label }}</label>
-                          <div class="uk-form-controls">
-                            <textarea class="uk-textarea" [name]="data.config.name" [readonly]="data.config.readonly" [(ngModel)] = "request.data[data.config.name]"></textarea>
+                          <div class="form-group">
+                            <label>{{ data.config.label }}</label>
+                            <textarea class="form-control" [name]="data.config.name" [readonly]="data.config.readonly" [(ngModel)] = "request.data[data.config.name]"></textarea>
                           </div>
                         </div>
+
+                        <!-- Checkbox -->
+                        <div *ngSwitchCase="'FormCheckbox'">
+                          <div class="form-check">
+                           <input type="checkbox" class="form-check-input" [checked]="request.data[data.config.initiallyChecked]" [disabled]="data.config.disabled" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]"/>
+                           <label class="form-check-label" [for]="data.config.name">{{ data.config.label }}</label>
+                          </div>
+                        </div>
+
                         <!-- Button -->
-                        <div *ngSwitchCase="'FormButton'">
-                          <div class="uk-margin-top">
-                              <input type="submit" class="uk-button uk-button-primary uk-width-1-1" [(ngModel)] = "data.config.label" [name] = "data.config.label">
+                        <div *ngSwitchCase="'FormButton'" class="form-group">
+                          <div class="col-sm-12">
+                              <input type="submit" class="btn btn-primary" [(ngModel)] = "data.config.label" [name] = "data.config.label">
                           </div>
                           <div *ngSwitchDefault>
                             default
@@ -78,8 +95,8 @@
                   </div>
               </form>
             </div>
-            <div *ngIf="!request" class="uk-position-absolute uk-position-center">
-                <span uk-spinner="ratio: 4.5"></span>
+            <div *ngIf="!request">
+                <span></span>
             </div>
         </div>
     </div>

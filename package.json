@@ -21,6 +21,7 @@
     "@mdi/font": "^6.5.95",
     "angular-oauth2-oidc": "^14.0.1",
     "angular-oauth2-oidc-jwks": "^14.0.1",
+    "cross-env": "^7.0.3",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~7.5.0",
     "swagger-ui": "^4.14.3",

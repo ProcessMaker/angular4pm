@@ -33,7 +33,7 @@ import { Configuration }                                     from '../configurat
 })
 export class TasksService {
 
-    protected basePath = 'http://localhost/api/1.0';
+    protected basePath = 'https://demojc-se.processmaker.net/api/1.0';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -165,7 +165,8 @@ export class TasksService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<InlineResponse20029>(`${this.configuration.basePath}/tasks`,
+        //return this.httpClient.get<InlineResponse20029>(`${this.configuration.basePath}/tasks`,
+        return this.httpClient.get<InlineResponse20029>(`${this.configuration.basePath}/tasks/?page=1&include=process,processRequest,processRequest.user,user,data&pmql=(user_id=1)%20AND%20(status%20%3D%20%22In%20Progress%22)&per_page=10&order_by=ID&order_direction=DESC&non_system=true`,
             {
                 params: queryParameters,
                 responseType: <any>responseType_,
