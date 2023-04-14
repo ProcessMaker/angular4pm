@@ -3,11 +3,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html'
+	selector: 'app-navigation',
+	templateUrl: './navigation.component.html',
 })
-export class NavigationComponent{
+export class NavigationComponent {
+	constructor(public authService: AuthService, public db: DbService) {}
 
-  constructor(public authService: AuthService, public db: DbService) {}
-
+	logout() {
+		this.authService.logout();
+	}
 }
