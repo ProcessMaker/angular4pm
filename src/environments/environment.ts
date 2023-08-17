@@ -7,10 +7,16 @@
 //This is then used in the auth.service.ts - this.httpClient.post(environment.apiUrl
 
 export const environment = {
-  production: false,
-  apiDomain: '',
-  apiPath: '/api/1.0',
-  apiProtocol: 'https://'
+	production: false,
+	apiDomain: '',
+	apiPath: '/api/1.0',
+	apiProtocol: 'https://',
+	clientId: '6',
+	clientSecret: 'dqIsXXJreBiWjCuU6m2ufguhRV6GVIfZu2SlhzBz',
+	oauthUrl: 'http://playground.innovations.processmaker.io/oauth/token',
+	redirectUri: 'http://localhost:4200/#/oauth/callback',
+	oauthAuthorizeUrl:
+		'http://playground.innovations.processmaker.io/oauth/authorize',
 };
 
 /*
