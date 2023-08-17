@@ -16,8 +16,21 @@ export class AuthService {
 		private db: DbService
 	) {}
 
-	// Placeholder method for checking authentication status
-	checkAuthStatus() {}
+	// Method to check the user's authentication status
+	checkAuthStatus() {
+		// Retrieve the access token from local storage
+		const token = this.db.load('access_token');
+
+		// Check if the token exists
+		if (token) {
+			// Optionally, you can add more logic here to validate the token, such as checking its expiration date
+			// If the token is valid, set the authenticated status to true
+			this.authenticated = true;
+		} else {
+			// If the token does not exist or is invalid, set the authenticated status to false
+			this.authenticated = false;
+		}
+	}
 
 	// Method to initiate the OAuth login process
 	login() {
