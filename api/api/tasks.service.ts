@@ -244,7 +244,7 @@ export class TasksService {
 
 		//return this.httpClient.get<InlineResponse20029>(`${this.configuration.basePath}/tasks`,
 		return this.httpClient.get<InlineResponse20029>(
-			`${this.configuration.basePath}/tasks/?page=1&include=process,processRequest,processRequest.user,user,data&pmql=(user_id=1)%20AND%20(status%20%3D%20%22In%20Progress%22)&per_page=10&order_by=ID&order_direction=DESC&non_system=true`,
+			`${this.configuration.basePath}/tasks/?page=1&include=process,processRequest,processRequest.user,user,data&pmql=(status%20%3D%20%22In%20Progress%22)&per_page=10&order_by=ID&order_direction=DESC&non_system=true`,
 			{
 				params: queryParameters,
 				responseType: <any>responseType_,

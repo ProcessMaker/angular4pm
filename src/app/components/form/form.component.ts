@@ -15,6 +15,9 @@ export class FormComponent implements OnInit {
 	exists: any; // Define the type as per your requirements
 	processRequestId: number | null = null; // Define the type as number or null
 	taskId: number | null = null; // Define the type as number or null
+	screen: any; // Define the type as per your requirements
+	data: any; // Define the type as per your requirements
+	response: any; // Define the type as per your requirements
 
 	// Constructor with necessary dependencies
 	constructor(
@@ -26,6 +29,7 @@ export class FormComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		//console.log(this);
 		// Parse the values as numbers, and handle the possibility of null values
 		// Convert processRequestId and taskId from string to number, handle null values
 		this.processRequestId =
@@ -47,11 +51,13 @@ export class FormComponent implements OnInit {
 				.subscribe(
 					(response) => {
 						// Assign the response to the request object
-						this.request = response;
+						this.screen = response.screen;
+						this.request = response.data;
+						this.response = response;
+						//console.log(this);
 					},
 					(error) => {
 						// Log any errors
-						console.log(error);
 					}
 				);
 		}
@@ -74,7 +80,6 @@ export class FormComponent implements OnInit {
 			// Set the credentials for the tasks API
 			this.tasksApi.configuration.credentials['pm_api_bearer'] =
 				this.db.load('access_token') || '';
-
 			// Update the task with the submitted form data
 			this.tasksApi.updateTask(this.taskId, formData).subscribe(
 				(response) => {

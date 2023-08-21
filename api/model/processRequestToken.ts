@@ -12,31 +12,30 @@
 import { ProcessRequestTokenEditable } from './processRequestTokenEditable';
 import { ProcessRequestTokenAllOf } from './processRequestTokenAllOf';
 
-
 /**
  * ProcessRequestToken is used to store the state of a token of the Nayra engine
  */
-export interface ProcessRequestToken { 
-    id?: string;
-    process_id?: string;
-    process_request_id?: string;
-    element_id?: string;
-    element_type?: string;
-    element_index?: string;
-    element_name?: string;
-    created_at?: string;
-    updated_at?: string;
-    initiated_at?: string;
-    advanceStatus?: string;
-    due_notified?: number;
-    user?: object;
-    process?: object;
-    process_request?: object;
-    user_id?: string;
-    status?: string;
-    due_at?: string;
-    riskchanges_at?: string;
-    subprocess_start_event_id?: string;
-    data?: object;
+export interface ProcessRequestToken {
+	id?: string;
+	process_id?: string;
+	process_request_id?: string;
+	element_id?: string;
+	element_type?: string;
+	element_index?: string;
+	element_name?: string;
+	created_at?: string;
+	updated_at?: string;
+	initiated_at?: string;
+	advanceStatus?: string;
+	due_notified?: number;
+	user?: object;
+	process?: object;
+	process_request?: object;
+	user_id?: string;
+	status?: string;
+	due_at?: string;
+	riskchanges_at?: string;
+	subprocess_start_event_id?: string;
+	data?: object;
+	screen?: object;
 }
-

@@ -1,103 +1,35 @@
 <div id="taskModal">
-    <div class="container">
-        <div *ngIf="request">
-            <div class="container-fluid">
-              <form #pmForm = "ngForm" (ngSubmit)="submitForm(pmForm.value)">
-                <div>
-                  <div>
-                    <h4 class="card-title">
-                      {{ request.screen.title }}
-                    </h4>
-                    <!-- Starts creating the Form dynamically -->
-                    <div *ngFor="let data of request.screen.config[0].items">
-                      
-                      <div [ngSwitch]="data.component">
-                        <!-- Label or Text -->
-                        <div *ngSwitchCase="'FormHtmlViewer'">
-                          <h6 class="card-subtitle mb-2 text-muted" >
-                            {{data.config.content}}
-                          </h6>
-                        </div>
-
-                        <div *ngSwitchCase="'FormInput'">
-                          <div class="form-group">
-                            <label>{{ data.config.label }}</label>
-                            <input type="text" class="form-control" [readonly]="data.config.readonly" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]"/>
-                          </div>  
-                        </div>
-                        <!-- Multi Column -->
-                        <div *ngSwitchCase="'FormMultiColumn'">
-                          <div *ngFor="let items of data.items" class="form-row">
-                            
-                            <div *ngFor="let item of items" class="form-group col-md-6">
-                              <div [ngSwitch]="item.component" >
-                                <div *ngSwitchCase="'FormInput'" >
-                                    <label [for]="item.config.name">{{ item.config.label }}</label>
-                                    <input type="text" class="form-control" [readonly]="item.config.readonly" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]"/>
-                                </div>
-                                <div *ngSwitchCase="'FormCheckbox'" >
-                                    <input type="checkbox" class="form-check-input" [checked]="request.data[item.config.initiallyChecked]" [disabled]="item.config.disabled" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]"/>
-                                    <label class="form-check-label" [for]="item.config.name">{{ item.config.label }}</label>
-                                </div>
-                                <div *ngSwitchCase="'FormTextArea'" >
-                                    <label [for]="item.config.name">{{ item.config.label }}</label>
-                                    <textarea class="form-control" [name]="item.config.name" [readonly]="item.config.readonly" [(ngModel)] = "request.data[item.config.name]"></textarea>
-                                </div>
-                                <div *ngSwitchCase="'FormSelectList'" >
-                                  <label>{{ item.config.label }}</label>
-                                  <select class="form-control" [name]="item.config.name" [(ngModel)] = "request.data[item.config.name]" [disabled]="item.config.readonly">
-                                    <option *ngFor="let option of item.config.options.optionsList" [ngValue]="option.value">{{option.content}}</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Dropdown -->
-                        <div *ngSwitchCase="'FormSelectList'">
-                          <div class="form-group">
-                            <label>{{ data.config.label }}</label>
-                            <select class="form-control" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]" [disabled]="data.config.readonly">
-                              <option *ngFor="let option of data.config.options.optionsList" [ngValue]="option.value">{{option.content}}</option>
-                            </select>
-                          </div>
-                        </div>
-                        <!-- Textarea -->
-                        <div *ngSwitchCase="'FormTextArea'">
-                          <div class="form-group">
-                            <label>{{ data.config.label }}</label>
-                            <textarea class="form-control" [name]="data.config.name" [readonly]="data.config.readonly" [(ngModel)] = "request.data[data.config.name]"></textarea>
-                          </div>
-                        </div>
-
-                        <!-- Checkbox -->
-                        <div *ngSwitchCase="'FormCheckbox'">
-                          <div class="form-check">
-                           <input type="checkbox" class="form-check-input" [checked]="request.data[data.config.initiallyChecked]" [disabled]="data.config.disabled" [name]="data.config.name" [(ngModel)] = "request.data[data.config.name]"/>
-                           <label class="form-check-label" [for]="data.config.name">{{ data.config.label }}</label>
-                          </div>
-                        </div>
-
-                        <!-- Button -->
-                        <div *ngSwitchCase="'FormButton'" class="form-group">
-                          <div class="col-sm-12">
-                              <input type="submit" class="btn btn-primary" [(ngModel)] = "data.config.label" [name] = "data.config.label">
-                          </div>
-                          <div *ngSwitchDefault>
-                            default
-                          </div>
-                        </div>
-                      </div>
-                        
-                      </div>
-
-                    </div>
-                  </div>
-              </form>
-            </div>
-            <div *ngIf="!request">
-                <span></span>
-            </div>
-        </div>
-    </div>
-</div>  
+	<div class="container">
+		<div *ngIf="screen">
+			<div class="container-fluid">
+				<form #pmForm="ngForm" (ngSubmit)="submitForm(pmForm.value)">
+					<div>
+						<div>
+							<h4 class="card-title">{{ screen.title }}</h4>
+							<!-- {{ screen | json }} -->
+							<!-- Use app-form-element to render form elements -->
+							<div *ngFor="let item of screen.config[0].items">
+								<!-- <div>Component Type: {{ data }}</div> -->
+								<app-form-element
+									[screen]="screen"
+									[response]="response"
+									[request]="request"
+									[data]="item"></app-form-element>
+							</div>
+							<!-- {{ data | json }} -->
+							<!-- Button -->
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="submit" class="btn btn-primary" value="Submit" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div *ngIf="!request">
+			<span></span>
+		</div>
+	</div>
+</div>

@@ -12,28 +12,30 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { NavigationComponent } from './components/nav/navigation.component';
 import { FormComponent } from './components/form/form.component';
 import { ApiModule } from 'api';
-
+import { FormElementComponent } from './components/form-element/form-element.component';
+import { ScreenComponent } from './components/screen/screen.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    TasksComponent,
-    NavigationComponent,
-    FormComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgxPaginationModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    ApiModule,
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		TasksComponent,
+		NavigationComponent,
+		FormComponent,
+		FormElementComponent,
+		ScreenComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HttpClientModule,
+		NgxPaginationModule,
+		FormsModule,
+		ReactiveFormsModule,
+		CommonModule,
+		ApiModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
