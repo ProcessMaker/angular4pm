@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService, ProcessRequestsService } from 'api';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({
 	selector: 'app-form',
-	templateUrl: './form.component.html',
+	templateUrl: './app-form.component.html',
 })
 export class FormComponent implements OnInit {
 	// Define the request object, type can be further specified
-	request: any;
-
+	@Input() request: any;
 	// Define properties with appropriate types
 	exists: any; // Define the type as per your requirements
 	processRequestId: number | null = null; // Define the type as number or null
 	taskId: number | null = null; // Define the type as number or null
-	screen: any; // Define the type as per your requirements
-	data: any; // Define the type as per your requirements
-	response: any; // Define the type as per your requirements
+	@Input() screen: any; // Define the type as per your requirements
+	@Input() data: any; // Define the type as per your requirements
+	@Input() response: any; // Define the type as per your requirements
+	@Input() element: any; // Define the type as per your requirements
 
 	// Constructor with necessary dependencies
 	constructor(
@@ -64,35 +64,33 @@ export class FormComponent implements OnInit {
 	}
 
 	// Function to handle form submission
-	submitForm(data: any) {
+	submitForm() {
 		// Define the type of data as per your requirements
 		// Create the form data object
-		let formData = {
-			data: data,
-			status: 'COMPLETED',
-		};
-
-		// Log the submitted data for debugging
-		console.log(data);
-
-		// Check if taskId is not null before proceeding
-		if (this.taskId !== null) {
-			// Set the credentials for the tasks API
-			this.tasksApi.configuration.credentials['pm_api_bearer'] =
-				this.db.load('access_token') || '';
-			// Update the task with the submitted form data
-			this.tasksApi.updateTask(this.taskId, formData).subscribe(
-				(response) => {
-					// Redirect to the tasks page if the response status is 'CLOSED'
-					if (response.status == 'CLOSED') {
-						this.router.navigateByUrl('tasks');
-					}
-				},
-				(error) => {
-					// Log any errors
-					console.log(error);
-				}
-			);
-		}
+		// 	let formData = {
+		// 		data: data,
+		// 		status: 'COMPLETED',
+		// 	};
+		// 	// Log the submitted data for debugging
+		// 	console.log(data);
+		// 	// Check if taskId is not null before proceeding
+		// 	if (this.taskId !== null) {
+		// 		// Set the credentials for the tasks API
+		// 		this.tasksApi.configuration.credentials['pm_api_bearer'] =
+		// 			this.db.load('access_token') || '';
+		// 		// Update the task with the submitted form data
+		// 		this.tasksApi.updateTask(this.taskId, formData).subscribe(
+		// 			(response) => {
+		// 				// Redirect to the tasks page if the response status is 'CLOSED'
+		// 				if (response.status == 'CLOSED') {
+		// 					this.router.navigateByUrl('tasks');
+		// 				}
+		// 			},
+		// 			(error) => {
+		// 				// Log any errors
+		// 				console.log(error);
+		// 			}
+		// 		);
+		// 	}
 	}
 }

@@ -3,23 +3,22 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-form-element',
-	templateUrl: './form-element.component.html',
+	templateUrl: './app-form-element.component.html',
 })
 export class FormElementComponent implements OnInit {
 	@Input() data: any; // The form element
 	@Input() request: any; // The form element data
 	@Input() screen: any; // The screen data
 	@Input() response: any; // The response data
+	@Input() element: any; // The response data
 	formDefs: any[] = []; // An array to hold all form definitions
+	component: any; // The component to be rendered
 
 	constructor(private sanitizer: DomSanitizer) {}
 
 	ngOnInit(): void {
-		// Iterate over the config array and process each form definition
-		this.screen.config.forEach((formDef: any) => {
-			this.formDefs.push(formDef);
-		});
-		console.log(this.formDefs);
+		console.log(this);
+		this.component = this.element.component;
 	}
 	isHtmlContent(content: string): boolean {
 		// Check if the content contains HTML tags  (https://stackoverflow.com/a/15458987)

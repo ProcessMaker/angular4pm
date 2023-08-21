@@ -1,6 +1,6 @@
-<div [ngSwitch]="checkSupportedComponents(screen)">
+<div [ngSwitch]="checkSupportedComponents(component)">
 	<!-- Label or Text -->
-	<div *ngSwitchCase="'FormHtml'">
+	<!-- <div *ngSwitchCase="'FormHtml'">
 		<label>{{ screen.config.label }}</label>
 		<div
 			*ngIf="isHtmlContent(screen.config.content); else normalText"
@@ -8,7 +8,7 @@
 		<ng-template #normalText>
 			<h6 class="card-subtitle mb-2 text-muted">{{ screen.config.content }}</h6>
 		</ng-template>
-	</div>
+	</div> -->
 
 	<!-- Input -->
 	<div *ngSwitchCase="'FormInput'">
@@ -51,7 +51,7 @@
 	</div> -->
 
 	<!-- Dropdown -->
-	<div *ngSwitchCase="'FormSelectList'">
+	<!-- <div *ngSwitchCase="'FormSelectList'">
 		<label>{{ screen.config.label }}</label>
 		<select
 			class="form-control"
@@ -64,20 +64,20 @@
 				{{ option.content }}
 			</option>
 		</select>
-	</div>
+	</div> -->
 
 	<!-- Textarea -->
-	<div *ngSwitchCase="'FormTextArea'">
+	<!-- <div *ngSwitchCase="'FormTextArea'">
 		<label>{{ screen.config.label }}</label>
 		<textarea
 			class="form-control"
 			[name]="screen.config.name"
 			[readonly]="screen.config.readonly"
 			[(ngModel)]="data[screen.config.name]"></textarea>
-	</div>
+	</div> -->
 
 	<!-- Checkbox -->
-	<div *ngSwitchCase="'FormCheckbox'">
+	<!-- <div *ngSwitchCase="'FormCheckbox'">
 		<input
 			type="checkbox"
 			class="form-check-input"
@@ -88,21 +88,21 @@
 		<label class="form-check-label" [for]="screen.config.name">{{
 			screen.config.label
 		}}</label>
-	</div>
+	</div> -->
 
 	<!-- Button -->
-	<div *ngSwitchCase="'FormButton'" class="form-group">
+	<!-- <div *ngSwitchCase="'FormButton'" class="form-group">
 		<div class="col-sm-12">
 			<input
 				type="submit"
 				class="btn btn-primary"
 				value="{{ screen.config.label }}" />
 		</div>
-	</div>
+	</div> -->
 	<!-- Image -->
-	<div *ngSwitchCase="'FormImage'">
+	<!-- <div *ngSwitchCase="'FormImage'">
 		<img [src]="safeUrl(screen.config.image)" />
-	</div>
+	</div> -->
 
 	<!-- Default -->
 	<!-- <div *ngSwitchDefault>default: {{ screen.component }}</div> -->

@@ -7,7 +7,7 @@ import { ProcessRequestsService, TasksService } from 'api';
 // Import local database service
 import { DbService } from 'src/app/services/db.service';
 // Import FormComponent to be used within this component
-import { FormComponent } from '../form/form.component';
+import { ScreenComponent } from '../screen/app-screen.component';
 
 // Define the Task interface to represent the structure of a task
 interface Task {
@@ -23,7 +23,7 @@ interface Task {
 // Component metadata
 @Component({
 	selector: 'app-tasks', // Selector used in templates
-	templateUrl: './tasks.component.html', // Path to the HTML template
+	templateUrl: './app-tasks.component.html', // Path to the HTML template
 })
 // TasksComponent class definition
 export class TasksComponent implements OnInit {
@@ -40,7 +40,7 @@ export class TasksComponent implements OnInit {
 	selectedTask: Task | null = null;
 	userTasks: Task[] = []; // Array to hold user tasks
 	color = 'green'; // Color property (usage not shown in provided code)
-	form: FormComponent | null = null; // FormComponent instance
+	screen: ScreenComponent | null = null; // FormComponent instance
 
 	// Constructor with dependency injection
 	constructor(
@@ -65,8 +65,8 @@ export class TasksComponent implements OnInit {
 			(response: any) => {
 				// Handle successful response
 				this.userTasks = response.data; // Assign user tasks from response data
-				// Create a new FormComponent instance
-				this.form = new FormComponent(
+				// Create a new ScreenComponent instance
+				this.screen = new ScreenComponent(
 					this.route,
 					this.router,
 					this.requestApi,
@@ -82,10 +82,10 @@ export class TasksComponent implements OnInit {
 	}
 
 	// Method to open a form with given processRequestId and taskId
-	openForm(processRequestId: string, taskId: string) {
+	openScreen(processRequestId: string, taskId: string) {
 		// Navigate to the 'form' route with parameters
 		this.router.navigate([
-			'form',
+			'screen',
 			{
 				processRequestId: processRequestId,
 				taskId: taskId,

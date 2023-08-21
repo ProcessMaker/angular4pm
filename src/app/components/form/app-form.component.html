@@ -1,0 +1,13 @@
+<form>
+	<div>
+		<div>
+			<!-- Use app-form-element to render form elements -->
+			<div *ngFor="let element of screen.items">
+				<!-- <div>Component Type: {{ data }}</div> -->
+				<app-form-element
+					[element]="element"
+					[request]="request"></app-form-element>
+			</div>
+		</div>
+	</div>
+</form>
