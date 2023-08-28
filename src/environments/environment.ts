@@ -8,15 +8,14 @@
 
 export const environment = {
 	production: false,
-	apiDomain: '',
+	apiDomain: 'localhost',
 	apiPath: '/api/1.0',
-	apiProtocol: 'https://',
-	clientId: '6',
-	clientSecret: 'dqIsXXJreBiWjCuU6m2ufguhRV6GVIfZu2SlhzBz',
-	oauthUrl: 'http://playground.innovations.processmaker.io/oauth/token',
+	apiProtocol: 'http://',
+	clientId: '19',
+	clientSecret: 'Psn9cxcGFKO1GO4ZZ9TgOhQtAjt0Wmzjc58vw8Lq',
+	oauthUrl: 'http://localhost/oauth/token',
 	redirectUri: 'http://localhost:4200/#/oauth/callback',
-	oauthAuthorizeUrl:
-		'http://playground.innovations.processmaker.io/oauth/authorize',
+	oauthAuthorizeUrl: 'http://localhost/oauth/authorize',
 };
 
 /*

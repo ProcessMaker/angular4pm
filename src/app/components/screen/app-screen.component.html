@@ -1,8 +1,7 @@
-<div>
-	<!-- {{ screens.config | json }} -->
-	<!-- Use app-form-element to render form elements -->
-	<div *ngFor="let screen of screenConfigs">
-		<h4 class="card-title">{{ screen.name }}</h4>
-		<app-form [screen]="screen" [request]="request"> </app-form>
-	</div>
-</div>
+<!-- {{ screens | json }} -->
+<!-- Use app-form-element to render form elements -->
+<app-form
+	*ngFor="let formsConfig of screen?.config"
+	[screen]="formsConfig"
+	[request]="request">
+</app-form>

@@ -15,10 +15,11 @@ export class ScreenComponent implements OnInit {
 	exists: any; // Define the type as per your requirements
 	processRequestId: number | null = null; // Define the type as number or null
 	taskId: number | null = null; // Define the type as number or null
-	screens: any; // Define the type as per your requirements
+	@Output() screens: any; // Define the type as per your requirements
 	data: any; // Define the type as per your requirements
 	response: any; // Define the type as per your requirements
-	screenConfigs: any;
+	screenConfig: any;
+	@Output() screen: any;
 
 	@Output() screenEvent: EventEmitter<any> = new EventEmitter(); // Define the type as per your requirements
 
@@ -31,7 +32,6 @@ export class ScreenComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		//console.log(this);
 		// Parse the values as numbers, and handle the possibility of null values
 		// Convert processRequestId and taskId from string to number, handle null values
 		this.processRequestId =
@@ -53,11 +53,9 @@ export class ScreenComponent implements OnInit {
 				.subscribe(
 					(response) => {
 						// Assign the response to the request object
-						this.screens = response.screen;
-						this.screenConfigs = this.screens.config;
+						this.screen = response.screen;
 						this.request = response.data;
-						this.response = response;
-						//console.log(this);
+						//console.log(this.screen);
 					},
 					(error) => {
 						// Log any errors

@@ -1,109 +1,16 @@
-<div [ngSwitch]="checkSupportedComponents(component)">
-	<!-- Label or Text -->
-	<!-- <div *ngSwitchCase="'FormHtml'">
-		<label>{{ screen.config.label }}</label>
-		<div
-			*ngIf="isHtmlContent(screen.config.content); else normalText"
-			[innerHTML]="screen.config.content"></div>
-		<ng-template #normalText>
-			<h6 class="card-subtitle mb-2 text-muted">{{ screen.config.content }}</h6>
-		</ng-template>
-	</div> -->
-
-	<!-- Input -->
-	<div *ngSwitchCase="'FormInput'">
-		<label>{{ screen.config.label }}</label>
-		<input
-			type="text"
-			class="form-control"
-			[readonly]="screen.config.readonly"
-			[name]="screen.config.name"
-			[(ngModel)]="data[screen.config.name]" />
-	</div>
-	<div *ngSwitchCase="'FormMultiColumn'">
-		<div *ngFor="let items of screen" class="form-row">
-			<div
-				*ngFor="let item of items"
-				[class]="getMultiColumnClass(item, items, screen)">
-				<app-form-element [data]="item"></app-form-element>
-			</div>
-		</div>
-	</div>
-
-	<!-- Original Multi Column Template -->
-	<!-- <div *ngSwitchCase="'FormMultiColumn'">
-		<div *ngFor="let items of screen.items" class="form-row">
-			<div *ngFor="let item of items" class="form-group col-md-6">
-				<app-form-element [data]="item"></app-form-element>
-			</div>
-		</div>
-	</div> -->
-
-	<!-- WIP: Revised Multi Column Template -->
-	<!-- <div *ngSwitchCase="'FormMultiColumn'">
-		<div *ngFor="let items of screen.items" class="form-row">
-			<div
-				*ngFor="let item of items"
-				[class]="getMultiColumnClass(item.config.options)">
-				<app-form-element [data]="item"></app-form-element>
-			</div>
-		</div>
-	</div> -->
-
-	<!-- Dropdown -->
-	<!-- <div *ngSwitchCase="'FormSelectList'">
-		<label>{{ screen.config.label }}</label>
-		<select
-			class="form-control"
-			[name]="screen.config.name"
-			[(ngModel)]="data[screen.config.name]"
-			[disabled]="screen.config.readonly">
-			<option
-				*ngFor="let option of screen.config.options.optionsList"
-				[ngValue]="option.value">
-				{{ option.content }}
-			</option>
-		</select>
-	</div> -->
-
-	<!-- Textarea -->
-	<!-- <div *ngSwitchCase="'FormTextArea'">
-		<label>{{ screen.config.label }}</label>
-		<textarea
-			class="form-control"
-			[name]="screen.config.name"
-			[readonly]="screen.config.readonly"
-			[(ngModel)]="data[screen.config.name]"></textarea>
-	</div> -->
-
-	<!-- Checkbox -->
-	<!-- <div *ngSwitchCase="'FormCheckbox'">
-		<input
-			type="checkbox"
-			class="form-check-input"
-			[checked]="data[screen.config.initiallyChecked]"
-			[disabled]="screen.config.disabled"
-			[name]="screen.config.name"
-			[(ngModel)]="data[screen.config.name]" />
-		<label class="form-check-label" [for]="screen.config.name">{{
-			screen.config.label
-		}}</label>
-	</div> -->
-
-	<!-- Button -->
-	<!-- <div *ngSwitchCase="'FormButton'" class="form-group">
-		<div class="col-sm-12">
-			<input
-				type="submit"
-				class="btn btn-primary"
-				value="{{ screen.config.label }}" />
-		</div>
-	</div> -->
-	<!-- Image -->
-	<!-- <div *ngSwitchCase="'FormImage'">
-		<img [src]="safeUrl(screen.config.image)" />
-	</div> -->
-
-	<!-- Default -->
-	<!-- <div *ngSwitchDefault>default: {{ screen.component }}</div> -->
+<div [ngSwitch]="checkSupportedComponents(element.component)">
+	<app-element-input
+		*ngSwitchCase="'FormInput'"
+		[element]="element"
+		[request]="request"></app-element-input>
+	<app-element-button
+		*ngSwitchCase="'FormButton'"
+		[element]="element"
+		[request]="request"></app-element-button>
+	<app-multi-column
+		*ngSwitchCase="'FormMultiColumn'"
+		[cols]="cols"
+		[element]="element"
+		[request]="request"></app-multi-column>
+	<app-element-default *ngSwitchCase="'default'"> </app-element-default>
 </div>

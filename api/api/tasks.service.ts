@@ -31,12 +31,14 @@ import { ProcessRequestToken } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class TasksService {
-	protected basePath = 'http://playground.innovations.processmaker.io/api/1.0';
+	protected basePath =
+		environment.apiProtocol + environment.apiDomain + environment.apiPath;
 	public defaultHeaders = new HttpHeaders();
 	public configuration = new Configuration();
 	public encoder: HttpParameterCodec;

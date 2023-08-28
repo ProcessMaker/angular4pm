@@ -18,6 +18,8 @@ export class FormComponent implements OnInit {
 	@Input() data: any; // Define the type as per your requirements
 	@Input() response: any; // Define the type as per your requirements
 	@Input() element: any; // Define the type as per your requirements
+	isMultiColumn: boolean = false;
+	@Input() cols: any;
 
 	// Constructor with necessary dependencies
 	constructor(
@@ -29,38 +31,12 @@ export class FormComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		//console.log(this);
+		console.log(this);
 		// Parse the values as numbers, and handle the possibility of null values
 		// Convert processRequestId and taskId from string to number, handle null values
 		this.processRequestId =
 			Number(this.route.snapshot.paramMap.get('processRequestId')) || null;
 		this.taskId = Number(this.route.snapshot.paramMap.get('taskId')) || null;
-
-		// Check if taskId is not null before proceeding
-		if (this.taskId !== null) {
-			// Set the credentials for the tasks API
-			this.tasksApi.configuration.credentials['pm_api_bearer'] =
-				this.db.load('access_token') || '';
-
-			// Fetch the task by ID and include specific related data
-			this.tasksApi
-				.getTasksById(
-					this.taskId,
-					'processRequest,user,data,screen,definition,screenRef'
-				)
-				.subscribe(
-					(response) => {
-						// Assign the response to the request object
-						this.screen = response.screen;
-						this.request = response.data;
-						this.response = response;
-						//console.log(this);
-					},
-					(error) => {
-						// Log any errors
-					}
-				);
-		}
 	}
 
 	// Function to handle form submission

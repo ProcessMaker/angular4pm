@@ -11,14 +11,25 @@ export class FormElementComponent implements OnInit {
 	@Input() screen: any; // The screen data
 	@Input() response: any; // The response data
 	@Input() element: any; // The response data
+	@Input() control: any;
 	formDefs: any[] = []; // An array to hold all form definitions
 	component: any; // The component to be rendered
+	options: any; // The number of columns to be rendered
+	@Input() isMultiColumn: boolean = false;
+	@Input() cols: any;
 
 	constructor(private sanitizer: DomSanitizer) {}
 
 	ngOnInit(): void {
 		console.log(this);
-		this.component = this.element.component;
+		if (this.element.component === 'FormMultiColumn') {
+			this.options = this.element.config.options;
+		} else if (this.element.component !== 'FormMultiColumn') {
+			//console.log(this);
+			//this.options = this.control.config.options;
+		}
+
+		//this.options = this.element;
 	}
 	isHtmlContent(content: string): boolean {
 		// Check if the content contains HTML tags  (https://stackoverflow.com/a/15458987)
@@ -28,38 +39,6 @@ export class FormElementComponent implements OnInit {
 	safeUrl(url: string): SafeUrl {
 		// Sanitize the URL string
 		return this.sanitizer.bypassSecurityTrustUrl(url);
-	}
-
-	getMultiColumnClass(item: any, items: any[], screen: any[]): string {
-		//console.log(item);
-		// console.log(items);
-		// console.log(screen);
-		return '';
-		// console.log(options);
-		// console.log(data);
-
-		// Assuming value is the column count, and content is the ratio
-		// let totalColumns = 12; // Standard Bootstrap grid
-		// let computedClass = 'form-group col-md-';
-
-		// // If the options array contains the desired information
-		// if (options && options.length > 0) {
-		// 	//let columnCount = Number(options[0].value);
-		// 	//let ratio = Number(options[1].content);
-		// 	let columnCount = Number(options[0].content);
-		// 	// console.log('totalColumns: ' + totalColumns);
-		// 	// console.log('columnCount: ' + columnCount);
-		// 	//console.log('ratio: ' + options.);
-
-		// 	// Compute the class based on the given ratio and column count
-		// 	computedClass += totalColumns / columnCount;
-		// } else {
-		// 	computedClass += '6'; // Default class if no valid options provided
-		// }
-
-		// //console.log('computed class: ' + computedClass);
-
-		// return computedClass;
 	}
 
 	checkSupportedComponents(component: any): any {
