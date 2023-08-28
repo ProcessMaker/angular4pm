@@ -14,12 +14,13 @@ export class FormComponent implements OnInit {
 	exists: any; // Define the type as per your requirements
 	processRequestId: number | null = null; // Define the type as number or null
 	taskId: number | null = null; // Define the type as number or null
-	@Input() screen: any; // Define the type as per your requirements
+	@Input() screens: any; // Define the type as per your requirements
 	@Input() data: any; // Define the type as per your requirements
 	@Input() response: any; // Define the type as per your requirements
 	@Input() element: any; // Define the type as per your requirements
 	isMultiColumn: boolean = false;
 	@Input() cols: any;
+	@Input() form: any;
 
 	// Constructor with necessary dependencies
 	constructor(
@@ -32,41 +33,12 @@ export class FormComponent implements OnInit {
 
 	ngOnInit() {
 		console.log(this);
-		// Parse the values as numbers, and handle the possibility of null values
-		// Convert processRequestId and taskId from string to number, handle null values
+
 		this.processRequestId =
 			Number(this.route.snapshot.paramMap.get('processRequestId')) || null;
 		this.taskId = Number(this.route.snapshot.paramMap.get('taskId')) || null;
 	}
 
 	// Function to handle form submission
-	submitForm() {
-		// Define the type of data as per your requirements
-		// Create the form data object
-		// 	let formData = {
-		// 		data: data,
-		// 		status: 'COMPLETED',
-		// 	};
-		// 	// Log the submitted data for debugging
-		// 	console.log(data);
-		// 	// Check if taskId is not null before proceeding
-		// 	if (this.taskId !== null) {
-		// 		// Set the credentials for the tasks API
-		// 		this.tasksApi.configuration.credentials['pm_api_bearer'] =
-		// 			this.db.load('access_token') || '';
-		// 		// Update the task with the submitted form data
-		// 		this.tasksApi.updateTask(this.taskId, formData).subscribe(
-		// 			(response) => {
-		// 				// Redirect to the tasks page if the response status is 'CLOSED'
-		// 				if (response.status == 'CLOSED') {
-		// 					this.router.navigateByUrl('tasks');
-		// 				}
-		// 			},
-		// 			(error) => {
-		// 				// Log any errors
-		// 				console.log(error);
-		// 			}
-		// 		);
-		// 	}
-	}
+	submitForm() {}
 }

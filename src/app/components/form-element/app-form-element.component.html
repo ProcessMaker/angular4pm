@@ -1,4 +1,4 @@
-<div [ngSwitch]="checkSupportedComponents(element.component)">
+<ng-container [ngSwitch]="checkSupportedComponents(element.component)">
 	<app-element-input
 		*ngSwitchCase="'FormInput'"
 		[element]="element"
@@ -13,4 +13,4 @@
 		[element]="element"
 		[request]="request"></app-multi-column>
 	<app-element-default *ngSwitchCase="'default'"> </app-element-default>
-</div>
+</ng-container>

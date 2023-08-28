@@ -1,7 +1,7 @@
 <!-- {{ screens | json }} -->
 <!-- Use app-form-element to render form elements -->
 <app-form
-	*ngFor="let formsConfig of screen?.config"
-	[screen]="formsConfig"
+	*ngFor="let screen of screens.config"
+	[form]="screen"
 	[request]="request">
 </app-form>

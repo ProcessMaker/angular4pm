@@ -10,6 +10,7 @@ export class MultiColumnComponent implements OnInit {
 	@Input() element: any;
 	@Input() control: any;
 	@Input() cols: any;
+	columnSize: any;
 
 	constructor() {}
 
@@ -19,9 +20,9 @@ export class MultiColumnComponent implements OnInit {
 		if (this.element && this.element.config && this.element.config.options) {
 			this.computedClasses = this.element.config.options.map(
 				(option: Option) => {
-					let columnSize = Number(option.content);
+					this.columnSize = Number(option.content);
 					//console.log('columnSize: ', columnSize);
-					return 'form-group col-md-' + columnSize;
+					return 'form-group col-md-' + this.columnSize;
 				}
 			);
 			//console.log('computed classes: ', this.computedClasses);

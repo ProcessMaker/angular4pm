@@ -1,16 +1,9 @@
 <form>
 	<!-- Use app-form-element to render form elements -->
-	<h4>{{ screen.name }}</h4>
 	<!-- {{ element | json }}} -->
-	<div *ngFor="let element of screen.items">
-		<app-multi-column
-			*ngIf="element.component == 'FormMultiColumn'"
-			[cols]="element.config.options"
-			[element]="element"
-			[request]="request"></app-multi-column>
+	<h4>{{ form.name }}</h4>
+	<div *ngFor="let element of form.items">
 		<app-form-element
-			*ngIf="element.component != 'FormMultiColumn'"
-			[isMultiColumn]="false"
 			[element]="element"
 			[request]="request"></app-form-element>
 	</div>

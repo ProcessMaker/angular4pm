@@ -19,7 +19,6 @@ export class ScreenComponent implements OnInit {
 	data: any; // Define the type as per your requirements
 	response: any; // Define the type as per your requirements
 	screenConfig: any;
-	@Output() screen: any;
 
 	@Output() screenEvent: EventEmitter<any> = new EventEmitter(); // Define the type as per your requirements
 
@@ -53,9 +52,9 @@ export class ScreenComponent implements OnInit {
 				.subscribe(
 					(response) => {
 						// Assign the response to the request object
-						this.screen = response.screen;
+						this.screens = response.screen;
 						this.request = response.data;
-						//console.log(this.screen);
+						console.log(this);
 					},
 					(error) => {
 						// Log any errors
