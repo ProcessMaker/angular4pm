@@ -46,26 +46,22 @@ export class FormComponent implements OnInit {
 		// If access token exists, set it in the task API configuration
 		if (accessToken)
 			this.requestApi.configuration.credentials['pm_api_bearer'] = accessToken;
-		console.log(this);
 		let payLoad = {
 			data: this.request,
+			status: 'COMPLETED',
 		};
 		// Call getTasks method from tasksApi with parameters null and 'ACTIVE'
-		this.requestApi
-			.updateProcessRequest(this.request._request.id, payLoad)
-			.subscribe(
-				(response: any) => {
-					// Handle successful response
-					let result = response.data; // Assign user tasks from response data
-
-					// Create a new ScreenComponent instance
-					console.log(result);
-				},
-				(error) => {
-					// Handle error response
-					console.log(error); // Log the error to the console
-				}
-			);
+		this.tasksApi.updateTask(Number(this.taskId), payLoad).subscribe(
+			(response: any) => {
+				// Handle successful response
+				console.log(response); // Log the response to the console
+				this.router.navigate(['tasks']);
+			},
+			(error) => {
+				// Handle error response
+				console.log(error); // Log the error to the console
+			}
+		);
 		//console.log(this);
 	}
 }
