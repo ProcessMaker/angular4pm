@@ -11,6 +11,7 @@ const routes: Routes = [
 		path: 'login',
 		component: LoginComponent,
 		runGuardsAndResolvers: 'always',
+		title: 'Login',
 	},
 	{
 		path: 'oauth/callback',
@@ -22,12 +23,15 @@ const routes: Routes = [
 		component: TasksComponent,
 		canActivate: [AuthGuard],
 		runGuardsAndResolvers: 'always',
+		title: 'Inbox',
 	},
 	{
 		path: 'screen',
 		component: ScreenComponent,
 		canActivate: [AuthGuard],
 		runGuardsAndResolvers: 'always',
+		title: 'Screen',
+		data: { title: 'Screen' },
 	},
 	{
 		path: '',

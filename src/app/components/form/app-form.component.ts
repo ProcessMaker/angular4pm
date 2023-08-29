@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		// console.log(this);
+		console.log(this);
 
 		this.processRequestId =
 			Number(this.route.snapshot.paramMap.get('processRequestId')) || null;

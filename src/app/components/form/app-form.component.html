@@ -1,10 +1,14 @@
-<form (ngSubmit)="submitForm()">
-	<!-- Use app-form-element to render form elements -->
-	<!-- {{ element | json }}} -->
-	<h4>{{ form.name }}</h4>
-	<ng-container *ngFor="let element of form.items">
-		<app-form-element
-			[element]="element"
-			[request]="request"></app-form-element>
-	</ng-container>
-</form>
+<div class="container-fluid">
+	<div class="table-container mt-4">
+		<form (ngSubmit)="submitForm()">
+			<!-- Use app-form-element to render form elements -->
+			<!-- {{ element | json }}} -->
+			<h4>{{ form.name }}</h4>
+			<ng-container *ngFor="let element of form.items">
+				<app-form-element
+					[element]="element"
+					[request]="request"></app-form-element>
+			</ng-container>
+		</form>
+	</div>
+</div>
