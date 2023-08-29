@@ -4,7 +4,7 @@
 		<!-- {{ item | json }} -->
 		<ng-container *ngFor="let control of item">
 			<!-- {{ control | json }} -->
-			<div class="form-group col-md-{{ columnSize }}">
+			<div class="form-group col-{{ columnSize }}">
 				<app-form-element
 					[element]="control"
 					[request]="request"></app-form-element>

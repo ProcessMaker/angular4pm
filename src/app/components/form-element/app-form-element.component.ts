@@ -21,7 +21,7 @@ export class FormElementComponent implements OnInit {
 	constructor(private sanitizer: DomSanitizer) {}
 
 	ngOnInit(): void {
-		console.log(this);
+		//console.log(this);
 		if (this.element.component === 'FormMultiColumn') {
 			this.options = this.element.config.options;
 		} else if (this.element.component !== 'FormMultiColumn') {

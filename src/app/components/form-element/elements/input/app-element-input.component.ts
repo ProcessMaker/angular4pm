@@ -14,7 +14,7 @@ export class InputComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {
-		console.log(this);
+		//console.log(this);
 	}
 }
 interface Option {

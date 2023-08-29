@@ -54,7 +54,7 @@ export class ScreenComponent implements OnInit {
 						// Assign the response to the request object
 						this.screens = response.screen;
 						this.request = response.data;
-						console.log(this);
+						//console.log(this);
 					},
 					(error) => {
 						// Log any errors

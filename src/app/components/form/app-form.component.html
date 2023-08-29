@@ -1,10 +1,10 @@
-<form>
+<form (ngSubmit)="submitForm()">
 	<!-- Use app-form-element to render form elements -->
 	<!-- {{ element | json }}} -->
 	<h4>{{ form.name }}</h4>
-	<div *ngFor="let element of form.items">
+	<ng-container *ngFor="let element of form.items">
 		<app-form-element
 			[element]="element"
 			[request]="request"></app-form-element>
-	</div>
+	</ng-container>
 </form>

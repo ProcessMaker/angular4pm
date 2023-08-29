@@ -16,7 +16,7 @@ export class MultiColumnComponent implements OnInit {
 
 	ngOnInit(): void {
 		// console.log(this.element);
-		console.log(this);
+		//console.log(this);
 		if (this.element && this.element.config && this.element.config.options) {
 			this.computedClasses = this.element.config.options.map(
 				(option: Option) => {
