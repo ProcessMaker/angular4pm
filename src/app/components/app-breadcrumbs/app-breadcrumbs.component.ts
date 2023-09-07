@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { DbService } from 'src/app/services/db.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-
 @Component({
-	selector: 'app-navigation',
-	templateUrl: './navigation.component.html',
+	selector: 'app-breadcrumbs',
+	templateUrl: './app-breadcrumbs.component.html',
 })
-export class NavigationComponent {
+export class AppBreadcrumbsComponent implements OnInit {
 	title: any;
 	homeCrumb: any;
 	currentCrumb: any;
@@ -20,8 +19,11 @@ export class NavigationComponent {
 		public browserModule: BrowserModule
 	) {}
 
-	// Method to log out the user by calling the logout method from the AuthService
-	logout() {
-		this.authService.logout();
+	ngOnInit(): void {}
+	currentPageTitle() {
+		return (this.title = window.document.title);
+	}
+	homePageTitle() {
+		return (this.homeCrumb = 'Home');
 	}
 }

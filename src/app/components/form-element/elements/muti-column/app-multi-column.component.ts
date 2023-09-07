@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
 	selector: 'app-multi-column',
@@ -11,53 +12,38 @@ export class MultiColumnComponent implements OnInit {
 	@Input() control: any;
 	@Input() cols: any;
 	columnSize: any;
+	shadow: any;
+	@Input() options: any;
+	@Input() calcPropsValues: any;
 
-	constructor() {}
+	constructor(private cdRef: ChangeDetectorRef) {}
+
+	ngAfterViewChecked() {
+		this.cdRef.detectChanges();
+	}
+	isArrayOfArrays(): boolean {
+		if (!Array.isArray(this.element.items)) {
+			return false;
+		}
+		for (const item of this.element.items) {
+			if (!Array.isArray(item)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	ngOnInit(): void {
-		// console.log(this.element);
-		//console.log(this);
-		if (this.element && this.element.config && this.element.config.options) {
-			this.computedClasses = this.element.config.options.map(
-				(option: Option) => {
-					this.columnSize = Number(option.content);
-					//console.log('columnSize: ', columnSize);
-					return 'form-group col-md-' + this.columnSize;
-				}
-			);
-			//console.log('computed classes: ', this.computedClasses);
-		}
+		console.log(this.element.items);
+		//console.log(this.isArrayOfArrays());
+		//this.element.push(this.computedClasses);
+		//console.log('computed classes: ', this.computedClasses);
 	}
-	checkSupportedComponents(component: any): any {
-		// Normalize the component name for supported components
-		const supportedComponents = [
-			'FormHtmlViewer',
-			'FormHtmlEditor',
-			'FormInput',
-			'FormMultiColumn',
-			'FormSelectList',
-			'FormTextArea',
-			'FormCheckbox',
-			'FormButton',
-			'FormImage',
-		];
-
-		if (supportedComponents.includes(component)) {
-			// console.log(
-			// 	component === ('FormHtmlEditor' || 'FormHtmlViewer') ? 'FormHtml' : ''
-			// );
-			// console.log('log for ' + component);
-			// if (component === 'FormHtmlEditor' || component === 'FormHtmlViewer') {
-			// 	console.log(component);
-			// } else {
-			// 	console.log('Unsupported');
-			// }
-			return component === 'FormHtmlEditor' || component === 'FormHtmlViewer'
-				? 'FormHtml'
-				: component;
-		} else {
-			return 'Unsupported'; // Return a default value for unsupported components
-		}
+	getColSize(control: any, idx: number): number {
+		// Make sure you're getting the options from the correct element
+		let colSize = control.config?.options[idx]?.content || 12;
+		//console.log('colSize: ', control);
+		return colSize; // defaulting to 12 if no config found
 	}
 }
 interface Option {

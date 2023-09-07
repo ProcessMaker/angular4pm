@@ -11,6 +11,7 @@ export class InputComponent implements OnInit {
 	@Input() formElement: any;
 	@Input() control: any;
 	@Input() data: any;
+	@Input() calcPropsValues: any;
 	constructor() {}
 
 	ngOnInit(): void {

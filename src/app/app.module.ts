@@ -16,8 +16,11 @@ import { FormElementComponent } from './components/form-element/app-form-element
 import { ScreenComponent } from './components/screen/app-screen.component';
 import { MultiColumnComponent } from './components/form-element/elements/muti-column/app-multi-column.component';
 import { InputComponent } from './components/form-element/elements/input/app-element-input.component';
+import { AppElementDefaultComponent } from './components/form-element/elements/default/app-element-default.component';
 import { ButtonComponent } from './components/form-element/elements/buttons/app-element-button.component';
-import { DefaultComponent } from './components/form-element/elements/default/app-element-default.component';
+import { AppBreadcrumbsComponent } from './components/app-breadcrumbs/app-breadcrumbs.component';
+import { AppElementHtmlViewerComponent } from './components/form-element/elements/html-viewer/app-element-html-viewer.component';
+import { AppElementImageComponent } from './components/form-element/elements/image/app-element-image.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +34,10 @@ import { DefaultComponent } from './components/form-element/elements/default/app
 		MultiColumnComponent,
 		InputComponent,
 		ButtonComponent,
-		DefaultComponent,
+		AppBreadcrumbsComponent,
+		AppElementDefaultComponent,
+		AppElementHtmlViewerComponent,
+		AppElementImageComponent,
 	],
 	imports: [
 		BrowserModule,

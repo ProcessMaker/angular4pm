@@ -10,6 +10,7 @@ export class ButtonComponent implements OnInit {
 	@Input() element: any;
 	@Input() formElement: any;
 	@Input() control: any;
+	@Input() calcPropsValues: any;
 	constructor() {}
 
 	ngOnInit(): void {

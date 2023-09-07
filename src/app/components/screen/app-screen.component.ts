@@ -31,6 +31,7 @@ export class ScreenComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		console.log(this);
 		// Parse the values as numbers, and handle the possibility of null values
 		// Convert processRequestId and taskId from string to number, handle null values
 		this.processRequestId =

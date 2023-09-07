@@ -3,5 +3,7 @@
 <app-form
 	*ngFor="let screen of screens?.config"
 	[form]="screen"
-	[request]="request">
+	[request]="request"
+	[css]="screens.custom_css"
+	[computed]="screens.computed">
 </app-form>

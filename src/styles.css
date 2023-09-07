@@ -185,6 +185,9 @@ tr td:last-child {
 	background-color: var(--danger-bg);
 }
 
+.rounded-corners {
+	border-radius: 12px;
+}
 /* //Badge color overwirte end */
 
 /* table styling */

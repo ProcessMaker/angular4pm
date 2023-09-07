@@ -1,14 +1,20 @@
 <!-- {{ element | json }} -->
 <div class="row">
-	<ng-container *ngFor="let item of element.items">
+	<ng-container *ngFor="let item of element.items; let outerIndex = index">
 		<!-- {{ item | json }} -->
-		<ng-container *ngFor="let control of item">
+
+		<ng-container *ngFor="let control of item; let innerIndex = index">
 			<!-- {{ control | json }} -->
-			<div class="form-group col-{{ columnSize }}">
-				<app-form-element
-					[element]="control"
-					[request]="request"></app-form-element>
-			</div>
+			<!-- {{ columnSize }} -->
+			<!-- {{ options[i].content }} -->
+			<!-- <div class="form-group col-{{ getColSize(element, innerIndex) }}"> -->
+			<!-- {{ control | json }} -->
+			<app-form-element
+				class="form-group col-{{ getColSize(element, outerIndex) }}"
+				[element]="control"
+				[request]="request"
+				[calcPropsValues]="calcPropsValues"></app-form-element>
+			<!-- </div> -->
 		</ng-container>
 	</ng-container>
 </div>

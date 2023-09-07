@@ -21,7 +21,9 @@ export class FormComponent implements OnInit {
 	isMultiColumn: boolean = false;
 	@Input() cols: any;
 	@Input() form: any;
-
+	@Input() css: any;
+	@Input() computed: any;
+	calcPropsValues: any = {};
 	// Constructor with necessary dependencies
 	constructor(
 		private route: ActivatedRoute,
@@ -32,13 +34,86 @@ export class FormComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		console.log(this);
-
+		//console.log(this);
+		this.calcPropsValues = this.executeJavascripts(this.computed);
 		this.processRequestId =
 			Number(this.route.snapshot.paramMap.get('processRequestId')) || null;
 		this.taskId = Number(this.route.snapshot.paramMap.get('taskId')) || null;
+		const styleEl = document.createElement('style');
+		styleEl.innerHTML = this.css;
+		document.head.appendChild(styleEl);
+		// add any custom css
+		// if (this.css.length > 0) {
+		// 	const sanitizedCSS = this.sanitizeCSS(this.css);
+		// 	if (sanitizedCSS) {
+		// 		// Inject CSS into the page
+		// 		const styleEl = document.createElement('style');
+		// 		styleEl.innerHTML = sanitizedCSS;
+		// 		document.head.appendChild(styleEl);
+		// 	} else {
+		// 		console.warn('CSS was sanitized out, nothing was injected.');
+		// 	}
+		// }
 	}
 
+	executeJavascripts(computed: any[]): { [key: string]: any } {
+		const result: { [key: string]: any } = {};
+
+		computed.forEach((computed) => {
+			if (computed.type === 'javascript') {
+				try {
+					const fn = new Function(computed.formula);
+					result[computed.property] = fn();
+				} catch (e) {
+					console.error(e);
+				}
+			}
+		});
+		return result;
+	}
+	/**
+	 * Given a raw CSS string, sanitize it by stripping out
+	 * non-conforming characters and properties.
+	 *
+	 * This approach uses a whitelist methodology, allowing only
+	 * specific properties, values, and characters.
+	 *
+	 * @param {string} css Raw CSS string
+	 * @returns {string} Sanitized CSS string
+	 */
+	sanitizeCSS(css: string) {
+		// 1. Strip out any comments
+		let cleanedCSS = css.replace(/\/\*[^*]*\*+([^/*][^*]*\*+)*\//g, '');
+
+		// 2. Split by braces to extract selectors and properties
+		const chunks = cleanedCSS.split('}');
+		cleanedCSS = chunks
+			.map((chunk) => {
+				const [selector, properties] = chunk.split('{');
+
+				// 2.1. Sanitize the selector
+				const sanitizedSelector = selector
+					.replace(/[^\w\s\.,\[\]='-]+/g, '')
+					.trim();
+
+				// 2.2. Sanitize the properties
+				let sanitizedProperties = '';
+				if (properties) {
+					const propList = properties.split(';');
+					propList.forEach((prop) => {
+						const [property, value] = prop.split(':').map((p) => p.trim());
+						sanitizedProperties += `${property}: ${value}; `;
+					});
+				}
+
+				return sanitizedSelector
+					? `${sanitizedSelector} { ${sanitizedProperties}}`
+					: '';
+			})
+			.join(' ');
+
+		return cleanedCSS;
+	}
 	// Function to handle form submission
 	submitForm() {
 		// Load access token from the database
@@ -64,4 +139,11 @@ export class FormComponent implements OnInit {
 		);
 		//console.log(this);
 	}
+}
+interface Javascript {
+	id: number;
+	name: string;
+	type: string;
+	formula: string;
+	property: string;
 }

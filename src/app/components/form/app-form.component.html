@@ -1,13 +1,21 @@
 <div class="container-fluid">
 	<div class="table-container mt-4">
+		<!-- create an html stylesheet block -->
+		<style>
+			{{ css }}
+			/* {{ computed | json }} */
+			/* {{ request | json }} */
+		</style>
 		<form (ngSubmit)="submitForm()">
 			<!-- Use app-form-element to render form elements -->
 			<!-- {{ element | json }}} -->
 			<h4>{{ form.name }}</h4>
 			<ng-container *ngFor="let element of form.items">
+				<!-- {{ element | json }} -->
 				<app-form-element
 					[element]="element"
-					[request]="request"></app-form-element>
+					[request]="request"
+					[calcPropsValues]="calcPropsValues"></app-form-element>
 			</ng-container>
 		</form>
 	</div>

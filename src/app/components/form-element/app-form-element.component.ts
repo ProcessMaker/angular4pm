@@ -12,22 +12,18 @@ export class FormElementComponent implements OnInit {
 	@Input() response: any; // The response data
 	@Input() element: any; // The response data
 	@Input() control: any;
-	formDefs: any[] = []; // An array to hold all form definitions
 	component: any; // The component to be rendered
-	options: any; // The number of columns to be rendered
-	@Input() isMultiColumn: boolean = false;
+	@Input() options: any; // The number of columns to be rendered
 	@Input() cols: any;
-
+	@Input() calcPropsValues: any = {};
 	constructor(private sanitizer: DomSanitizer) {}
 
 	ngOnInit(): void {
-		//console.log(this);
-		if (this.element.component === 'FormMultiColumn') {
-			this.options = this.element.config.options;
-		} else if (this.element.component !== 'FormMultiColumn') {
-			//console.log(this);
-			//this.options = this.control.config.options;
-		}
+		console.log(this.element.component);
+		console.log(this);
+		// if (this.element.component === 'FormMultiColumn') {
+		// 	this.options = this.element.config.options;
+		// }
 
 		//this.options = this.element;
 	}
