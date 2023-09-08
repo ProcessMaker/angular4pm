@@ -16,6 +16,8 @@ export const environment = {
 	oauthUrl: 'http://localhost/oauth/token',
 	redirectUri: 'http://localhost:4200/#/oauth/callback',
 	oauthAuthorizeUrl: 'http://localhost/oauth/authorize',
+	customCss: false,
+	calcProps: true,
 };
 
 /*

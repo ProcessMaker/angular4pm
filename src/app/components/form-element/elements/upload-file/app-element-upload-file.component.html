@@ -1,0 +1,8 @@
+<div class="input">
+	<label>{{ element?.config?.label }}</label>
+	<input
+		type="file"
+		[readonly]="element?.config?.readonly"
+		[name]="element?.config?.name"
+		[(ngModel)]="request[element?.config?.name]" />
+</div>

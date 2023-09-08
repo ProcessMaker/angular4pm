@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService, ProcessRequestsService } from 'api';
 import { DbService } from 'src/app/services/db.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-form',
@@ -39,9 +40,11 @@ export class FormComponent implements OnInit {
 		this.processRequestId =
 			Number(this.route.snapshot.paramMap.get('processRequestId')) || null;
 		this.taskId = Number(this.route.snapshot.paramMap.get('taskId')) || null;
-		const styleEl = document.createElement('style');
-		styleEl.innerHTML = this.css;
-		document.head.appendChild(styleEl);
+		if (environment.customCss === true) {
+			const styleEl = document.createElement('style');
+			styleEl.innerHTML = this.css;
+			document.head.appendChild(styleEl);
+		}
 		// add any custom css
 		// if (this.css.length > 0) {
 		// 	const sanitizedCSS = this.sanitizeCSS(this.css);

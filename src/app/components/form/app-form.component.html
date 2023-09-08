@@ -10,13 +10,15 @@
 			<!-- Use app-form-element to render form elements -->
 			<!-- {{ element | json }}} -->
 			<h4>{{ form.name }}</h4>
-			<ng-container *ngFor="let element of form.items">
-				<!-- {{ element | json }} -->
-				<app-form-element
-					[element]="element"
-					[request]="request"
-					[calcPropsValues]="calcPropsValues"></app-form-element>
-			</ng-container>
+			<div class="container">
+				<ng-container *ngFor="let element of form.items">
+					<!-- {{ element | json }} -->
+					<app-form-element
+						[element]="element"
+						[request]="request"
+						[calcPropsValues]="calcPropsValues"></app-form-element>
+				</ng-container>
+			</div>
 		</form>
 	</div>
 </div>

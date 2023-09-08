@@ -9,6 +9,11 @@
 		[element]="element"
 		[request]="request"
 		[calcPropsValues]="calcPropsValues"></app-element-input>
+	<app-element-upload-file
+		*ngSwitchCase="'FileUpload'"
+		[element]="element"
+		[request]="request"
+		[calcPropsValues]="calcPropsValues"></app-element-upload-file>
 	<app-element-html-viewer
 		*ngSwitchCase="'FormHtmlViewer'"
 		[element]="element"

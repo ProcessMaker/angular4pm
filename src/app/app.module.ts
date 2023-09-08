@@ -21,6 +21,7 @@ import { ButtonComponent } from './components/form-element/elements/buttons/app-
 import { AppBreadcrumbsComponent } from './components/app-breadcrumbs/app-breadcrumbs.component';
 import { AppElementHtmlViewerComponent } from './components/form-element/elements/html-viewer/app-element-html-viewer.component';
 import { AppElementImageComponent } from './components/form-element/elements/image/app-element-image.component';
+import { AppElementUploadFileComponent } from './components/form-element/elements/upload-file/app-element-upload-file.component';
 
 @NgModule({
 	declarations: [
@@ -38,6 +39,7 @@ import { AppElementImageComponent } from './components/form-element/elements/ima
 		AppElementDefaultComponent,
 		AppElementHtmlViewerComponent,
 		AppElementImageComponent,
+		AppElementUploadFileComponent,
 	],
 	imports: [
 		BrowserModule,
