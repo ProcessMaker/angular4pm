@@ -4,11 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from './components/app.component';
 import { AppRoutingModule } from './routing/app-routing.module';
+import { RootComponent } from './components/root/app-root.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavigationComponent } from './components/nav/navigation.component';
+import { AppBreadcrumbsComponent } from './components/breadcrumbs/app-breadcrumbs.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [
+		RootComponent,
+		LoginComponent,
+		NavigationComponent,
+		AppBreadcrumbsComponent,
+	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
@@ -18,6 +26,6 @@ import { AppRoutingModule } from './routing/app-routing.module';
 		AppRoutingModule,
 	],
 	providers: [],
-	bootstrap: [AppComponent],
+	bootstrap: [RootComponent],
 })
 export class AppModule {}

@@ -1,0 +1,15 @@
+<nav
+	*ngIf="authService.authenticated"
+	class="header-container d-flex justify-content-between table-container navbar navbar-light bg-light">
+	<a style="all: unset; cursor: pointer" routerLink="/tasks">
+		<div class="header-text-container d-flex flex-row align-items-end">
+			<img src="/assets/img/PMLOGO.png" alt="" style="height: 87px" />
+			<h1 class="display-4">ProcessMaker</h1>
+		</div>
+	</a>
+	<div class="header-text-container mt-6 d-flex align-items-end">
+		<button (click)="logout()" class="btn btn-danger btn-login w-100">
+			<i class="me-1 text-light bi bi-arrow-left-right"></i> Log Out
+		</button>
+	</div>
+</nav>
