@@ -1,0 +1,9 @@
+<!-- {{ screens | json }} -->
+<!-- Use app-form-element to render form elements -->
+<app-form
+	*ngFor="let screen of screens?.config"
+	[form]="screen"
+	[request]="request"
+	[css]="screens.custom_css"
+	[computed]="screens.computed">
+</app-form>
