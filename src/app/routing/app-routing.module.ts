@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
+import { TasksComponent } from '../components/tasks/app-tasks.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
 	{
@@ -13,6 +15,13 @@ const routes: Routes = [
 		path: 'oauth/callback',
 		component: LoginComponent,
 		runGuardsAndResolvers: 'always',
+	},
+	{
+		path: 'tasks',
+		component: TasksComponent,
+		canActivate: [AuthGuard],
+		runGuardsAndResolvers: 'always',
+		title: 'Inbox',
 	},
 	{
 		path: '',

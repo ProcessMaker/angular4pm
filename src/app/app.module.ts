@@ -9,6 +9,7 @@ import { RootComponent } from './components/root/app-root.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/nav/navigation.component';
 import { AppBreadcrumbsComponent } from './components/breadcrumbs/app-breadcrumbs.component';
+import { TasksComponent } from './components/tasks/app-tasks.component';
 
 @NgModule({
 	declarations: [
@@ -16,6 +17,7 @@ import { AppBreadcrumbsComponent } from './components/breadcrumbs/app-breadcrumb
 		LoginComponent,
 		NavigationComponent,
 		AppBreadcrumbsComponent,
+		TasksComponent,
 	],
 	imports: [
 		BrowserModule,
