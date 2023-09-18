@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { LoginComponent } from '../components/login/login.component';
 import { TasksComponent } from '../components/tasks/app-tasks.component';
+import { ScreenComponent } from '../components/screen/app-screen.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
@@ -22,6 +24,14 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 		runGuardsAndResolvers: 'always',
 		title: 'Inbox',
+	},
+	{
+		path: 'screen',
+		component: ScreenComponent,
+		canActivate: [AuthGuard],
+		runGuardsAndResolvers: 'always',
+		title: 'Screen',
+		data: { title: 'Screen' },
 	},
 	{
 		path: '',
