@@ -1,0 +1,20 @@
+<div class="container-fluid">
+	<div class="table-container mt-4">
+		<!-- create an html stylesheet block -->
+		<style>
+			{{ css }}
+		</style>
+		<form (ngSubmit)="submitForm()">
+			<!-- Use app-form-element to render form elements -->
+			<h4>{{ form.name }}</h4>
+			<div class="container">
+				<ng-container *ngFor="let element of form.items">
+					<app-form-element
+						[element]="element"
+						[request]="request"
+						[calcPropsValues]="calcPropsValues"></app-form-element>
+				</ng-container>
+			</div>
+		</form>
+	</div>
+</div>

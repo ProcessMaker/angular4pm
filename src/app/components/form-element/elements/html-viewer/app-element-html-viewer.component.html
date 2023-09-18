@@ -1,0 +1,6 @@
+<ng-container *ngIf="element.config.calculatedContent">
+	<div [innerHTML]="element.config.calculatedContent"></div>
+</ng-container>
+<ng-container *ngIf="!element.config.calculatedContent">
+	<div [innerHTML]="element.config.content"></div>
+</ng-container>
